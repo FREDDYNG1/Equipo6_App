@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+        <ion-col size="12" size-lg="3">
+
+            <ion-card>
+                <ion-img src="/assets/icon/asistencia.jpg"></ion-img>
+            </ion-card>
+            
+            <ion-card-header>
+                <ion-card-title>RegistraApp</ion-card-title>
+            </ion-card-header>
+          </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+
+  <ion-list>
+    <!-- Usuario con estilo solid -->
+    <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-input type="text" fill="solid" placeholder="Ingrese su correo" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+
+    <!-- Contraseña con estilo outline -->
+    <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-input type="password" maxlength="4" fill="outline" placeholder="Ingrese su contraseña" [(ngModel)]="contrasena"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button (click)="iniciarSesion()">Iniciar Sesión</ion-button>
+  </div>
+
+  <!-- Usa el componente del spinner de carga -->
+  <app-spinner-carga class="centrar-spinner" *ngIf="isLoading"></app-spinner-carga>
+
+  <!-- Mensaje de login correcto o incorrecto -->
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+</ion-content>
+
+
+<footer>
+  <ion-toolbar>
+    <ion-title>RegistApp 2024</ion-title>
+  </ion-toolbar>
+</footer>
+
+
