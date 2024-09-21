@@ -13,46 +13,61 @@ export class LoginPage {
   mensaje: string = '';
   isLoading: boolean = false;
 
-  constructor(private router: Router, private alertController: AlertController) {} 
+  constructor(private router: Router, private alertController: AlertController) {}
 
   async iniciarSesion() {
-    // Verifica si los campos de usuario o contraseña están vacíos
     if (!this.usuario || !this.contrasena) {
       this.mensaje = 'Por favor, ingrese usuario y contraseña';
-      return; 
+      return;
     }
-  
-    this.isLoading = true; // Muestra el spinner al iniciar sesión
-    this.mensaje = ''; // Limpia cualquier mensaje previo
-  
-    // Simulación de la autenticación (reemplazar con tu lógica real)
+
+    this.isLoading = true; // Mostrar spinner
+    this.mensaje = ''; // Limpiar mensajes anteriores
+
+    // Simulación de autenticación, reemplaza con tu lógica real
     setTimeout(async () => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (emailRegex.test(this.usuario) && this.contrasena === '1234') {
         this.mensaje = 'Inicio de sesión correcto';
-        
-        // Navega a la página de inicio si las credenciales son correctas
-        this.router.navigate(['/home-docente']).then(async () => {
-          // Muestra una alerta de bienvenida usando AlertController
+
+        // Extraer el dominio del correo electrónico
+        const dominio = this.usuario.split('@')[1];
+
+        let ruta = '';
+        // Lógica de redirección en función del dominio del correo
+        if (dominio === 'docente.com') {
+          ruta = '/home-docente';
+        } else if (dominio === 'alumno.com') {
+          ruta = '/home-alumno';
+        } else {
+          ruta = '/home-general'; // Ruta general para otros dominios
+        }
+
+        // Navegar a la página correspondiente
+        this.router.navigate([ruta]).then(async () => {
+          // Mostrar una alerta de bienvenida
           const alert = await this.alertController.create({
-            backdropDismiss: false, 
+            backdropDismiss: false,
             header: 'Bienvenido',
             message: 'Inicio de sesión exitoso',
             buttons: ['OK']
           });
           await alert.present();
         });
+
       } else {
-        // Muestra un mensaje de error si las credenciales no son correctas
+        // Mostrar mensaje de error si las credenciales no son correctas
         const alert = await this.alertController.create({
-          backdropDismiss: false, 
+          backdropDismiss: false,
           header: 'Error',
           message: 'Usuario o contraseña incorrectos',
           buttons: ['OK']
         });
         await alert.present();
       }
-      this.isLoading = false; // Oculta el spinner después de la autenticación
-    }, 1000); // Tiempo de espera simulado
+
+      this.isLoading = false; // Ocultar spinner después de la autenticación
+    }, 1000); // Simulación de tiempo de espera
   }
 }
+

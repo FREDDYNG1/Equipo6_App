@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="login"></app-header>
 
 <ion-content>
 
@@ -23,7 +19,7 @@
 </ion-grid>
 
 
-
+<ion-card>
   <ion-list>
     <!-- Usuario con estilo solid -->
     <ion-item>
@@ -38,22 +34,24 @@
     </ion-item>
   </ion-list>
 
-  <div class="ion-padding">
+  <div class="ion-padding ion-text-center">
     <ion-button (click)="iniciarSesion()">Iniciar Sesión</ion-button>
+  </div>
+
+  <div class="ion-text-center"  >
+    ¿Olvido su contraseña?
+    <p  routerLink="/restablecer-contrasena" >Restablecer contrseña</p>
   </div>
 
   <!-- Usa el componente del spinner de carga -->
   <app-spinner-carga class="centrar-spinner" *ngIf="isLoading"></app-spinner-carga>
 
   <!-- Mensaje de login correcto o incorrecto -->
-  <p *ngIf="mensaje">{{ mensaje }}</p>
+  <p class="ion-text-center" *ngIf="mensaje">{{ mensaje }}</p>
+</ion-card>
 </ion-content>
 
 
-<footer>
-  <ion-toolbar>
-    <ion-title>RegistApp 2024</ion-title>
-  </ion-toolbar>
-</footer>
+<app-footer></app-footer>
 
 

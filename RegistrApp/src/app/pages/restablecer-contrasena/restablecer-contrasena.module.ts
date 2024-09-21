@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomeAlumnoPageRoutingModule } from './home-alumno-routing.module';
+import { RestablecerContrasenaPageRoutingModule } from './restablecer-contrasena-routing.module';
 
-import { HomeAlumnoPage } from './home-alumno.page';
+import { RestablecerContrasenaPage } from './restablecer-contrasena.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeAlumnoPageRoutingModule,
+    RestablecerContrasenaPageRoutingModule,
     ComponentsModule
-  ],
-  declarations: [HomeAlumnoPage]
+    ],
+    declarations: [RestablecerContrasenaPage]
 })
-export class HomeAlumnoPageModule {}
+export class RestablecerContrasenaPageModule {}

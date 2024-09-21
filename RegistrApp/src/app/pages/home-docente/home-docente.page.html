@@ -1,13 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>homeDocente</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">homeDocente</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+
+  <ion-content class="ion-padding">
+    <!-- Itera sobre las opciones del menú -->
+    <ion-list>
+      <ion-item *ngFor="let option of menuOptions" 
+                [routerLink]="option.url" 
+                (click)="option.titulo === 'Cerrar Sesión' ? cerrarSesion() : null">
+        <ion-icon slot="start" [name]="option.icon"></ion-icon>
+        <ion-label>{{ option.titulo }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title color="primary">Home Docente</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <!-- Contenido principal de la página -->
+  </ion-content>
+</div>
