@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RestablecerContrasenaPageRoutingModule } from './restablecer-contrasena-routing.module';
+import { GenerarQrPageRoutingModule } from './generar-qr-routing.module';
 
-import { RestablecerContrasenaPage } from './restablecer-contrasena.page';
+import { GenerarQrPage } from './generar-qr.page';
+import { QRCodeModule } from 'angularx-qrcode';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -14,9 +15,10 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    RestablecerContrasenaPageRoutingModule,
+    GenerarQrPageRoutingModule,
+    QRCodeModule,
     ComponentsModule
-    ],
-    declarations: [RestablecerContrasenaPage]
+  ],
+  declarations: [GenerarQrPage]
 })
-export class RestablecerContrasenaPageModule {}
+export class GenerarQrPageModule {}

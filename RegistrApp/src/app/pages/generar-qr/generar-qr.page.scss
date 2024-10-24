@@ -1,0 +1,26 @@
+.small-button {
+  --width: auto;
+  --height: 40px; /* Botón más pequeño */
+  font-size: 14px; /* Ajustar el tamaño de la fuente */
+  margin-top: 16px; /* Espacio superior */
+}
+
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+ion-item {
+  --padding-start: 10px;
+  margin-bottom: 16px;
+}
+
+ion-label {
+  font-size: 14px; /* Ajusta el tamaño del texto del label */
+}

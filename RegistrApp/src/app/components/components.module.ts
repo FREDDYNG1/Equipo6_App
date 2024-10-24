@@ -13,7 +13,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
     SpinnerCargaComponent,
     HeaderComponent,
     FooterComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
   ],
   imports: [
     CommonModule,

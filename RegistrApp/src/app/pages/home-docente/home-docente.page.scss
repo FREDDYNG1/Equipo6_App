@@ -1,0 +1,24 @@
+.small-button {
+  font-size: 14px; /* Tamaño de la fuente más pequeño */
+  padding: 8px 16px; /* Ajustar el padding */
+  --border-radius: 8px; /* Redondeo suave */
+  --width: 100px; /* Ancho personalizado */
+  --height: 40px; /* Altura personalizada */
+}
+
+ion-content {
+  padding: 16px; /* Ajustar el padding del contenido */
+}
+
+ion-menu {
+  --width: 250px; /* Ajusta el ancho del menú */
+}
+
+ion-item {
+  --padding-start: 10px; /* Ajustar el padding dentro del ítem */
+  font-size: 14px; /* Tamaño de texto más pequeño */
+}
+
+ion-icon {
+  font-size: 20px; /* Tamaño del ícono */
+}

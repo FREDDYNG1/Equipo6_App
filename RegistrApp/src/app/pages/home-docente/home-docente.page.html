@@ -8,8 +8,8 @@
   <ion-content class="ion-padding">
     <!-- Itera sobre las opciones del menú -->
     <ion-list>
-      <ion-item *ngFor="let option of menuOptions" 
-                [routerLink]="option.url" 
+      <ion-item *ngFor="let option of menuOptions"
+                [routerLink]="option.url"
                 (click)="option.titulo === 'Cerrar Sesión' ? cerrarSesion() : null">
         <ion-icon slot="start" [name]="option.icon"></ion-icon>
         <ion-label>{{ option.titulo }}</ion-label>
@@ -30,5 +30,14 @@
 
   <ion-content>
     <!-- Contenido principal de la página -->
+
+    <ion-button class="small-button" routerLink="/generar-qr" color="primary">
+      Generar QR
+    </ion-button>
+
+
+
   </ion-content>
+  <app-footer></app-footer>
 </div>
+

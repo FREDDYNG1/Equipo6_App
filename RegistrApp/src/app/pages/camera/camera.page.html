@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tomar Foto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Botón para abrir la cámara -->
+  <ion-button expand="full" (click)="takePicture()">Tomar Foto</ion-button>
+
+  <!-- Mostrar la imagen capturada -->
+  <img *ngIf="capturedImage" [src]="capturedImage" alt="Imagen capturada" />
+</ion-content>

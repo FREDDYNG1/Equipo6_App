@@ -1,0 +1,53 @@
+<app-header titulo="Registro Usuario"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-lg="3">
+        <ion-card>
+          <ion-img src="/assets/imagen/logo.png"></ion-img>
+        </ion-card>
+
+        <ion-card-header>
+          <ion-card-title>RegistraApp</ion-card-title>
+        </ion-card-header>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card>
+    <form (ngSubmit)="registrarUsuario()"> <!-- Inicio del formulario -->
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="nombre" name="nombre" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nombre de Usuario</ion-label>
+          <ion-input [(ngModel)]="username" name="username" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Correo Electrónico</ion-label>
+          <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <!-- Botón de registro deshabilitado mientras carga -->
+      <div class="ion-padding ion-text-center">
+        <ion-button type="submit" [disabled]="isLoading">Registrar</ion-button>
+      </div>
+
+      <!-- Spinner de carga centrado -->
+      <div class="spinner-container" *ngIf="isLoading">
+        <ion-spinner></ion-spinner>
+      </div>
+    </form> <!-- Fin del formulario -->
+  </ion-card>
+</ion-content>
