@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular'; // Importa el AlertController
-import { ApiService } from 'src/app/services/api.service';  // Asegúrate de que el servicio esté importado
+import { AlertController } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +9,17 @@ import { ApiService } from 'src/app/services/api.service';  // Asegúrate de que
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  nombre: string = '';
   email: string = '';
   password: string = '';
-  username: string = '';  // Campo añadido
-  groupId: number = 6;  // ID del grupo
+  groupId: number = 6;
   mensaje: string = '';
   isLoading: boolean = false;
 
-  constructor(private router: Router, private alertController: AlertController, private apiService: ApiService) {}
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private apiService: ApiService
+  ) {}
 
   // Método de inicio de sesión
   async iniciarSesion() {
@@ -29,25 +31,21 @@ export class LoginPage {
     this.isLoading = true; // Mostrar spinner
     this.mensaje = ''; // Limpiar mensajes anteriores
 
-    // Crear el objeto con las credenciales
     const credentials = {
       email: this.email,
       password: this.password,
       groupId: this.groupId
     };
 
-    // Llamar al método loginUser del servicio ApiService
     this.apiService.loginUser(credentials).subscribe(
       async (response: any) => {
         console.log('Respuesta recibida de la API:', response); // Depuración
         if (response.isValid) {
           console.log('Credenciales válidas'); // Depuración
 
-          // Extraer el dominio del correo electrónico
           const dominio = this.email.split('@')[1];
           let ruta = '';
 
-          // Lógica de redirección en función del dominio del correo
           if (dominio === 'docente.com') {
             ruta = '/home-docente';
           } else if (dominio === 'alumno.com') {
@@ -62,11 +60,9 @@ export class LoginPage {
           // Navegar a la página correspondiente
           this.router.navigate([ruta]).then(async () => {
             console.log('Navegación exitosa a:', ruta); // Verifica que la navegación se completó
-            // Mostrar una alerta de bienvenida
             const alert = await this.alertController.create({
               backdropDismiss: false,
-              header: 'Bienvenido',
-              message: 'Inicio de sesión exitoso',
+              message: `¡Bienvenido, ${this.email} !`,
               buttons: ['OK']
             });
             await alert.present();
@@ -75,7 +71,6 @@ export class LoginPage {
           });
 
         } else {
-          // Si isValid es falso, mostrar error
           const alert = await this.alertController.create({
             backdropDismiss: false,
             header: 'Error',
@@ -89,9 +84,7 @@ export class LoginPage {
       },
       async (error) => {
         console.log('Error en la autenticación:', error); // Depuración
-        // Verificar el tipo de error recibido
         if (error.status === 404) {
-          // Asumiendo que el código de estado 404 indica que el usuario no está registrado
           const alert = await this.alertController.create({
             backdropDismiss: false,
             header: 'Usuario no registrado',
@@ -100,7 +93,6 @@ export class LoginPage {
           });
           await alert.present();
         } else if (error.status === 401) {
-          // Credenciales incorrectas
           const alert = await this.alertController.create({
             backdropDismiss: false,
             header: 'Error',
@@ -109,7 +101,6 @@ export class LoginPage {
           });
           await alert.present();
         } else {
-          // Otros errores, como problemas del servidor o red
           const alert = await this.alertController.create({
             backdropDismiss: false,
             header: 'Error',
@@ -119,7 +110,7 @@ export class LoginPage {
           await alert.present();
         }
 
-        this.isLoading = false; // Ocultar el spinner después del error
+        this.isLoading = false;
       }
     );
   }
