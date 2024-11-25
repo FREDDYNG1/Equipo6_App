@@ -45,16 +45,13 @@
     <div class="ion-text-center">
       <ion-button routerLink="/registro" color="primary">Registrarse</ion-button>
     </div>
-
-    <br>
-
-    <div class="ion-text-center">
-      <!-- Enlace para recuperación de contraseña -->
-      ¿Olvidó su contraseña?
-      <p>
-        <a routerLink="/recover-password">Restablecer contraseña</a>
-      </p>
+    <!-- recuperar contraseña -->
+    <div class="forgot-password-container">
+      <p class="forgot-password-text">¿Olvidaste tu contraseña?</p>
+      <p class="recovery-link" (click)="openRecoveryModal()">Recuperar Contraseña</p>
     </div>
+
+
 
     <!-- Mensaje de login correcto o incorrecto -->
     <p class="ion-text-center" *ngIf="mensaje">{{ mensaje }}</p>

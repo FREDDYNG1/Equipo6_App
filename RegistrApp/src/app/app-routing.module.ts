@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-
-
 const routes: Routes = [
   {
     path: '',
@@ -17,12 +15,10 @@ const routes: Routes = [
     path: 'home-docente',
     loadChildren: () => import('./pages/home-docente/home-docente.module').then(m => m.HomeDocentePageModule),
 
-
   },
   {
     path: 'home-alumno',
     loadChildren: () => import('./pages/home-alumno/home-alumno.module').then(m => m.HomeAlumnoPageModule),
-
   },
   {
     path: 'inicio-app',
@@ -30,20 +26,20 @@ const routes: Routes = [
   },
   {
     path: 'generar-qr',
-    loadChildren: () => import('./pages/generar-qr/generar-qr.module').then( m => m.GenerarQrPageModule),
+    loadChildren: () => import('./pages/generar-qr/generar-qr.module').then(m => m.GenerarQrPageModule),
 
   },
   {
     path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
-    path: 'camera',
-    loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
+    path: 'camara',
+    loadChildren: () => import('./pages/camara/camara.module').then(m => m.CamaraPageModule)
   },
   {
-    path: 'recover-password',
-    loadChildren: () => import('./pages/recover-password/recover-password.module').then(m => m.RecoverPasswordPageModule)
+    path: 'perfil-estudiante',
+    loadChildren: () => import('./pages/perfil-estudiante/perfil-estudiante.module').then( m => m.PerfilEstudiantePageModule)
   },
 
 ];
@@ -54,4 +50,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

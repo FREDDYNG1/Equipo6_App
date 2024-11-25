@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { RecoveryModalComponent } from './recovery-modal/recovery-modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,16 +16,20 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
     HeaderComponent,
     FooterComponent,
     MenuLateralComponent,
+    RecoveryModalComponent,
+
   ],
   imports: [
     CommonModule,
     IonicModule,
+    FormsModule
   ],
   exports: [
     SpinnerCargaComponent,
     HeaderComponent,
     FooterComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    RecoveryModalComponent
   ]
 })
 export class ComponentsModule { }

@@ -19,17 +19,17 @@
     <form (ngSubmit)="registrarUsuario()"> <!-- Inicio del formulario -->
       <ion-list>
         <ion-item>
-          <ion-label position="stacked">Nombre</ion-label>
+          <ion-label position="stacked">Nombres</ion-label>
           <ion-input [(ngModel)]="nombre" name="nombre" type="text" required></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">Nombre de Usuario</ion-label>
+          <ion-label position="stacked">Apellidos</ion-label>
           <ion-input [(ngModel)]="username" name="username" type="text" required></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">Correo Electrónico</ion-label>
+          <ion-label position="stacked">Correo Electronico</ion-label>
           <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
         </ion-item>
 
@@ -48,6 +48,6 @@
       <div class="spinner-container" *ngIf="isLoading">
         <ion-spinner></ion-spinner>
       </div>
-    </form> <!-- Fin del formulario -->
+    </form>
   </ion-card>
 </ion-content>

@@ -34,25 +34,24 @@ export class RegistroPage {
       return;
     }
 
-    this.isLoading = true;  // Mostrar spinner de carga
+    this.isLoading = true;
 
     const registroData = {
       name: this.nombre,
       email: this.email,
       password: this.password,
-      username: this.username,  // Asegurarse de que se envía el campo username
+      username: this.username,
       groupId: this.groupId
     };
 
-    // Depurar el envío de datos
+
     console.log('Enviando los siguientes datos:', registroData);
 
-    // Llamada al servicio de registro
+
     this.apiService.registerUser(registroData).subscribe(
       async (response) => {
-        this.isLoading = false;  // Ocultar spinner de carga
-        console.log('Registro exitoso:', response);  // Depurar la respuesta del servidor
-
+        this.isLoading = false;
+        console.log('Registro exitoso:', response);
         const alert = await this.alertCtrl.create({
           header: 'Registro exitoso',
           message: 'Usuario registrado correctamente',
@@ -60,11 +59,11 @@ export class RegistroPage {
         });
         await alert.present();
 
-        this.router.navigate(['/login']);  // Redirigir al inicio de sesión
+        this.router.navigate(['/login']);
       },
       async (error) => {
-        this.isLoading = false;  // Ocultar spinner de carga en caso de error
-        console.error('Error en el registro:', error);  // Depurar el error
+        this.isLoading = false;
+        console.error('Error en el registro:', error);
 
         const alert = await this.alertCtrl.create({
           header: 'Error',

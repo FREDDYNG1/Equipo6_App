@@ -9,22 +9,22 @@ import { Router } from '@angular/router';
 export class HomeAlumnoPage implements OnInit {
 
   menuOptions = [
-    { titulo: 'Inicio', 
-      url: '/inicio', 
-      icon: 'home' 
+    { titulo: 'Inicio',
+      url: '/inicio',
+      icon: 'home'
     },
-    { titulo: 'Perfil', 
-      url: '/perfil', 
-      icon: 'person-outline' 
+    { titulo: 'Perfil',
+      url: '/perfil-estudiante',
+      icon: 'person-outline'
     },
-    { titulo: 'Cerrar Sesión', 
-      url: '/logout', 
-      icon: 'log-out-outline' 
+    { titulo: 'Cerrar Sesión',
+      url: '/logout',
+      icon: 'log-out-outline'
     }
   ];
-  
 
-  constructor(private router: Router) {} 
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }

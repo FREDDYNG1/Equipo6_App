@@ -5,5 +5,30 @@
     height: 100px; /* Ajusta la altura si es necesario */
     text-align: center; /* Asegura que el contenido esté centrado */
   }
-  
-  
+
+  .forgot-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .forgot-password-text {
+    font-size: 16px;
+    color: #555; /* Gris oscuro */
+    margin-bottom: 10px;
+  }
+
+  .recovery-link {
+    font-size: 18px;
+    color: #007bff; /* Azul principal */
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .recovery-link:hover {
+    color: #0056b3; /* Azul más oscuro al pasar el mouse */
+  }
+

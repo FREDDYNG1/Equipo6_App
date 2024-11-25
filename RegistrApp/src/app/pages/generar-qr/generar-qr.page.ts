@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import * as QRCode from 'qrcode';
+import { Component } from '@angular/core';
+import { Directory, Filesystem, Encoding } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-generar-qr',
@@ -8,45 +9,49 @@ import { Share } from '@capacitor/share';
   styleUrls: ['./generar-qr.page.scss'],
 })
 export class GenerarQrPage {
+  qrText = '';
 
-  name: string = ''; // Nombre que se usará para generar el QR
-  qrCodeImage: string | undefined; // Imagen del QR
+  constructor(private loadingController: LoadingController) {}
 
-  constructor() { }
+  async shareImage(canvas: HTMLCanvasElement) {
+    // Eliminar prefijo Base64
+    let base64 = canvas.toDataURL().split(',')[1];
+    let path = 'qr.png';
 
-
-  // Método para generar el código QR basado en el valor de 'name'
-  generateQRCode() {
-    if (!this.name) {
-      alert('Por favor ingrese un nombre para generar el código QR.');
-      return;
-    }
-
-    QRCode.toDataURL(this.name, { width: 300, margin: 2 }, (err, url) => {
-      if (err) {
-        console.error('Error generando el código QR:', err);
-        return;
-      }
-      this.qrCodeImage = url; // Guarda la URL de la imagen QR generada
+    // Mostrar el loading spinner
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      message: 'Preparando imagen...',
     });
-  }
-
-  // Método para compartir el código QR
-  async shareQRCode() {
-    if (!this.qrCodeImage) {
-      alert('Primero debe generar un código QR para compartirlo.');
-      return;
-    }
+    await loading.present();
 
     try {
+      // Guardar la imagen como archivo temporal
+      const writeResult = await Filesystem.writeFile({
+        path,
+        data: base64,
+        directory: Directory.Cache,
+      });
+
+      const uri = writeResult.uri;
+
+      // Compartir el archivo
       await Share.share({
-        title: 'Código QR Generado',
-        text: 'Aquí tienes el código QR que he generado',
-        url: this.qrCodeImage,
-        dialogTitle: 'Compartir Código QR',
+        url: uri,
+        text: 'Aquí está tu código QR',
+        title: 'Compartir QR',
+      });
+
+      // Eliminar el archivo temporal
+      await Filesystem.deleteFile({
+        path,
+        directory: Directory.Cache,
       });
     } catch (error) {
-      console.error('Error al compartir el código QR:', error);
+      console.error('Error al compartir la imagen:', error);
+    } finally {
+      // Ocultar el loading spinner
+      await loading.dismiss();
     }
   }
 }

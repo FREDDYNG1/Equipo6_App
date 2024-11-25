@@ -7,28 +7,45 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding ion-text-center" >
 
-  <!-- Título con estilo más pequeño para una mejor jerarquía -->
-  <ion-text color="primary">
-    <h2>Generar QR</h2>
-  </ion-text>
 
-  <!-- Campo de entrada para el nombre -->
-  <ion-item>
-    <ion-label position="stacked">Nombre para Generar QR</ion-label>
-    <ion-input [(ngModel)]="name" placeholder="Ingrese su nombre aquí"></ion-input>
-  </ion-item>
 
-  <!-- Botón para generar el código QR -->
-  <ion-button class="small-button" expand="full" (click)="generateQRCode()">Generar Código QR</ion-button>
+    <div id="qrImage">
+      <div class="d-flex-center" >
+        <div class="d-flex-center qr-wrapper" >
+          <qr-code *ngIf="qrText" [value]="qrText"
+         size="190"
+         errorCorrectionLevel="M" />
+         <img *ngIf="!qrText" class="qr-placeholder" src="assets/images/qr.webp" alt="">
+        </div>
 
-  <!-- Mostrar el QR generado si está disponible -->
-  <div class="qr-code-container" *ngIf="qrCodeImage">
-    <img [src]="qrCodeImage" alt="Código QR generado" />
-  </div>
+      </div>
+        <div>
+        <div class="ion-padding-top" >{{qrText}}
+        </div>
 
-  <!-- Botón para compartir el código QR si está disponible -->
-  <ion-button expand="full" color="secondary" *ngIf="qrCodeImage" (click)="shareQRCode()">Compartir Código QR</ion-button>
+        <ion-textarea class="ion-padding-top" label="Escribe texto aqui"
+        labelPlacement="stacked"
+        fill="outline"
+        [(ngModel)]="qrText"
+        rows="4"
+        [autoGrow]="true" >
+        </ion-textarea>
+
+<!--=========Compartir QR============-->
+
+<ion-button *ngIf="qrText" class="submit ion-margin-top " expand="block">
+  Compartir
+  <ion-icon slot="end" name="share-social-outline"></ion-icon>
+</ion-button>
+
+      </div>
+
+    </div>
+
+
+
+
 
 </ion-content>
