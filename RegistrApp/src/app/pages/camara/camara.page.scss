@@ -1,70 +1,109 @@
-ion-segment{
-  margin-top: 20px;
- }
+/* Fondo general */
+ion-content {
+  --background: #f9f9f9; /* Fondo claro */
+}
 
- .segment{
-   padding: 30px 5px;
- }
+/* Encabezado */
+ion-toolbar {
+  --background: #4caf50; /* Verde exitoso */
+  --color: #ffffff; /* Texto blanco */
+}
 
- .submit{
-   height: 44px;
-   --border-radius: 10px;
-   --background: var(--ion-color-tertiary);
- }
+ion-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
- .scan-label{
-   margin: 25px 0;
- }
+/* Contenedor principal */
+.scan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
 
- img{
-   width: 200px;
- }
+.scan-container img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
 
- .result{
-   color: black;
-   border: 1px dashed var(--ion-color-medium);
-   border-radius: 10px;
-   margin: 30px 0;
+.scan-container h6 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 2rem;
+}
 
-   p{
-     color: var(--ion-color-tertiary);
-     margin-bottom: 5px;
-     font-size: 11px;
-   }
+/* Botones */
+ion-row {
+  margin-top: 1rem;
+  width: 100%;
+}
 
-   h6{
-     margin-top: 0;
-   }
- }
+ion-col {
+  display: flex;
+  justify-content: center;
+}
 
- ion-button{
-   text-transform: none;
- }
+ion-button {
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
- ion-textarea{
-   --highlight-color-valid: var(--ion-color-tertiary);
-   text-align: start;
- }
+ion-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
 
- #qrImage{
-   padding: 20px 0;
- }
+ion-button[color="primary"] {
+  --background: #4caf50; /* Verde principal */
+  --color: #ffffff;
+}
 
- .qr-wrapper{
-   width: 230px;
-   min-height: 230px;
-   background: var(--ion-color-tertiary);
-   border-radius: 20px;
- }
+ion-button[color="secondary"] {
+  --background: #81c784; /* Verde más claro */
+  --color: #ffffff;
+}
 
- .qr-placeholder{
-   width: 60px;
- }
+/* Resultado del escaneo */
+.result {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
- .d-flex-center{
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
+.result p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
 
+.result div {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4caf50;
+}
 
+.result ion-button {
+  --background: transparent;
+  --border-color: #4caf50;
+  --color: #4caf50;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.result ion-button:hover {
+  --background: #4caf50;
+  --color: #ffffff;
+}

@@ -1,24 +1,41 @@
 .modal-container {
-  padding: 20px;
+  padding: 1.5rem;
   text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  margin-bottom: 20px;
-  font-size: 22px;
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333333;
 }
 
-p {
-  margin-bottom: 20px;
-  color: #666;
+.modal-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #666666;
 }
 
-ion-button {
-  margin-top: 10px;
+.input-item {
+  --background: #f1f3f5;
+  --border-radius: 8px;
+  margin-bottom: 1rem;
 }
+
 .error-message {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  font-size: 0.875rem;
+  color: #e74c3c;
+  margin-top: 0.5rem;
+}
+
+.button-group {
+  margin-top: 1.5rem;
+
+  ion-button {
+    --border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
 }

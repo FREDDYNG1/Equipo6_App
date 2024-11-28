@@ -1,16 +1,16 @@
+
 <ion-menu contentId="main-content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
+    <ion-toolbar color="success">
+      <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="ion-padding">
-    <!-- Itera sobre las opciones del menú -->
+    <!-- Lista de opciones del menú -->
     <ion-list>
-      <ion-item *ngFor="let option of menuOptions" [routerLink]="option.url"
-      (click)="option.titulo === 'Cerrar Sesión' ? cerrarSesion() : null">
-        <ion-icon slot="start" [name]="option.icon"></ion-icon>
+      <ion-item *ngFor="let option of menuOptions" [routerLink]="option.url">
+        <ion-icon slot="start" [name]="option.icon" class="menu-icon"></ion-icon>
         <ion-label>{{ option.titulo }}</ion-label>
       </ion-item>
     </ion-list>
@@ -19,22 +19,33 @@
 
 <div class="ion-page" id="main-content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title color="primary">Home Alumno</ion-title>
+      <ion-title>Home Alumno</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <!-- Contenido principal de la página -->
+    <!-- Contenedor del saludo -->
+    <div class="welcome-container">
+      <h1 class="welcome-title">{{ saludo }}</h1>
+      <p class="welcome-subtitle">Explora tus opciones y registra tu asistencia fácilmente.</p>
+    </div>
 
+    <!-- Tarjeta con la fecha actual -->
+    <ion-card class="date-card">
+      <ion-card-content>
+        <p>{{ currentDate }}</p>
+      </ion-card-content>
+    </ion-card>
 
-
-    <ion-button class="small-button ion-padding" routerLink="/camara" color="primary">
-      Registra Tu Asistencia
-    </ion-button>
-
+    <!-- Botón principal -->
+    <div class="button-container">
+      <ion-button expand="block" routerLink="/camara" color="secondary" class="action-button">
+        Registra Tu Asistencia
+      </ion-button>
+    </div>
   </ion-content>
 </div>

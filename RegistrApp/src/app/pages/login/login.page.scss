@@ -1,34 +1,75 @@
-.centrar-spinner {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100px; /* Ajusta la altura si es necesario */
-    text-align: center; /* Asegura que el contenido esté centrado */
-  }
+.login-page {
+  --background: #f8f9fa;
+}
 
-  .forgot-password-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    text-align: center;
-  }
+.logo-card {
+  --background: none;
+  box-shadow: none;
+  margin-bottom: 1rem;
+}
 
-  .forgot-password-text {
-    font-size: 16px;
-    color: #555; /* Gris oscuro */
-    margin-bottom: 10px;
-  }
+.logo-img {
+  width: 120px;
+  height: auto;
+  margin: 0 auto;
+}
 
-  .recovery-link {
-    font-size: 18px;
-    color: #007bff; /* Azul principal */
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
+.app-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
+}
 
-  .recovery-link:hover {
-    color: #0056b3; /* Azul más oscuro al pasar el mouse */
-  }
+.login-card {
+  margin: 0 auto;
+  padding: 1.5rem;
+  max-width: 400px;
+  border-radius: 12px;
+  --background: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
 
+.input-item {
+  --border-radius: 8px;
+  margin-bottom: 1rem;
+  --background: #f1f3f5;
+}
+
+.login-button {
+  --background: #4caf50;
+  --color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.register-button,
+.forgot-password-button {
+  font-size: 0.9rem;
+  color: #007bff;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.forgot-password-button {
+  color: #6c757d;
+}
+.overlay-spinner {
+  position: fixed; /* Fijar el spinner en la pantalla */
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Ajustar el punto de referencia al centro */
+  z-index: 1000; /* Asegurarse de que esté encima de otros elementos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  width: 100%; /* Abarcar todo el ancho */
+  height: 100%; /* Abarcar todo el alto */
+}
+
+app-spinner-carga {
+  width: 50px; /* Tamaño del spinner */
+  height: 50px;
+}

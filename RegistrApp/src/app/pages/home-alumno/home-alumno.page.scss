@@ -1,0 +1,115 @@
+/* --- MENÚ LATERAL --- */
+ion-menu {
+  --width: 250px; /* Ancho del menú */
+  background: #ffffff; /* Fondo blanco */
+}
+
+ion-toolbar {
+  --background: #4caf50; /* Color principal */
+  --color: #ffffff; /* Texto blanco */
+}
+
+ion-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Lista del menú */
+ion-list {
+  margin-top: 1rem;
+}
+
+ion-item {
+  --border-radius: 8px;
+  margin: 0.5rem;
+  --background: #f1f3f5; /* Fondo claro para los ítems */
+}
+
+ion-item:hover {
+  --background: #e8f5e9; /* Color de fondo al pasar el cursor */
+}
+
+ion-icon {
+  color: #4caf50; /* Iconos en verde */
+}
+
+ion-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* --- PÁGINA PRINCIPAL --- */
+.welcome-container {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #4caf50, #81c784); /* Fondo degradado */
+  color: #ffffff;
+  border-radius: 0 0 20px 20px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #f1f8e9;
+}
+
+/* Botón principal */
+.button-container {
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.action-button {
+  --background: #ffffff;
+  --color: #4caf50;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- CONFIGURACIÓN GENERAL --- */
+ion-content {
+  --background: #f9f9f9; /* Fondo general claro */
+}
+
+div.ion-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.date-card {
+  margin: 1rem;
+  text-align: center;
+  --background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-card ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4caf50; /* Verde principal */
+}
+
+.date-card p {
+  font-size: 1rem;
+  color: #333333;
+  margin-top: 0.5rem;
+}

@@ -1,17 +1,23 @@
 <div class="modal-container">
-  <h2>Recuperar Contraseña</h2>
-  <p>Por favor, ingresa tu correo electrónico para recuperar tu contraseña:</p>
-  <ion-item>
+  <h2 class="modal-title">Recuperar Contraseña</h2>
+  <p class="modal-description">Por favor, ingresa tu correo electrónico para recuperar tu contraseña:</p>
+
+  <ion-item class="input-item">
     <ion-label position="floating">Correo Electrónico</ion-label>
     <ion-input
       type="email"
       [(ngModel)]="email"
       (ionBlur)="validateEmail()"
+      required
     ></ion-input>
   </ion-item>
+
   <!-- Mostrar advertencia si el campo está vacío -->
   <p *ngIf="emailError" class="error-message">Por favor, ingresa un correo válido.</p>
 
-  <ion-button expand="block" (click)="recoverPassword(email)">Enviar</ion-button>
-  <ion-button expand="block" color="medium" (click)="dismissModal()">Cancelar</ion-button>
+  <!-- Botones de acción -->
+  <div class="button-group">
+    <ion-button expand="block" color="primary" (click)="recoverPassword(email)">Enviar</ion-button>
+    <ion-button expand="block" color="medium" (click)="dismissModal()">Cancelar</ion-button>
+  </div>
 </div>

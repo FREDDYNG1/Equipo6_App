@@ -1,8 +1,64 @@
-.spinner-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100px; /* Ajusta la altura si es necesario */
-  text-align: center; /* Asegura que el contenido esté centrado */
+.register-page {
+  --background: #f8f9fa; /* Fondo claro */
 }
 
+.logo-card {
+  --background: none;
+  box-shadow: none;
+  margin-bottom: 1.5rem;
+}
+
+.logo-img {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #4caf50; /* Verde principal */
+  margin-bottom: 2rem;
+}
+
+.register-card {
+  margin: 0 auto;
+  padding: 1.5rem;
+  max-width: 400px;
+  border-radius: 12px;
+  --background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.input-item {
+  --background: #f1f3f5; /* Fondo de los campos */
+  --border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.register-button {
+  --background: #4caf50;
+  --color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.spinner-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+.qr-placeholder-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.qr-placeholder {
+  width: 100px;
+  height: auto;
+  opacity: 0.8;
+}

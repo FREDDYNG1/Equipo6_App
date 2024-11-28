@@ -1,50 +1,92 @@
-<app-header titulo="Registro Usuario"></app-header>
-
-<ion-content>
+<ion-content class="register-page">
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-lg="3">
-        <ion-card>
-          <ion-img src="/assets/imagen/logo.png"></ion-img>
+      <ion-col size="12" class="center-content">
+        <!-- Logo -->
+        <ion-card class="logo-card">
+          <ion-img src="/assets/imagen/logo.png" class="logo-img"></ion-img>
         </ion-card>
 
-        <ion-card-header>
+        <!-- Título de la app -->
+        <ion-card-header class="app-title">
           <ion-card-title>RegistraApp</ion-card-title>
         </ion-card-header>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-card>
-    <form (ngSubmit)="registrarUsuario()"> <!-- Inicio del formulario -->
+  <!-- Formulario de registro -->
+  <ion-card class="register-card">
+    <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-list>
-        <ion-item>
-          <ion-label position="stacked">Nombres</ion-label>
-          <ion-input [(ngModel)]="nombre" name="nombre" type="text" required></ion-input>
+        <!-- Placeholder QR -->
+        <div class="qr-placeholder-container">
+          <img
+            *ngIf="!user.name && !user.username && !user.email && !user.password"
+            src="/assets/images/qr-placeholder.webp"
+            alt="QR Placeholder"
+            class="qr-placeholder"
+          />
+        </div>
+
+        <!-- Campo Nombres -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Nombres</ion-label>
+          <ion-input
+            [(ngModel)]="user.name"
+            name="name"
+            type="text"
+            required
+          ></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Apellidos</ion-label>
-          <ion-input [(ngModel)]="username" name="username" type="text" required></ion-input>
+        <!-- Campo Apellidos -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Apellidos</ion-label>
+          <ion-input
+            [(ngModel)]="user.username"
+            name="username"
+            type="text"
+            required
+          ></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Correo Electronico</ion-label>
-          <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+        <!-- Campo Correo Electrónico -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-input
+            [(ngModel)]="user.email"
+            name="email"
+            type="email"
+            required
+          ></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+        <!-- Campo Contraseña -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            [(ngModel)]="user.password"
+            name="password"
+            type="password"
+            required
+          ></ion-input>
         </ion-item>
       </ion-list>
 
-      <!-- Botón de registro deshabilitado mientras carga -->
+      <!-- Botón Registrar -->
       <div class="ion-padding ion-text-center">
-        <ion-button type="submit" [disabled]="isLoading">Registrar</ion-button>
+        <ion-button
+          type="submit"
+          expand="block"
+          [disabled]="!registerForm.form.valid || isLoading"
+          class="register-button"
+        >
+          Registrar
+        </ion-button>
       </div>
 
-      <!-- Spinner de carga centrado -->
+      <!-- Spinner de carga -->
       <div class="spinner-container" *ngIf="isLoading">
         <ion-spinner></ion-spinner>
       </div>

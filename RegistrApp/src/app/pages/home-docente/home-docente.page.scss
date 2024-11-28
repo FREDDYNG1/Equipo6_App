@@ -1,24 +1,95 @@
-.small-button {
-  font-size: 14px; /* Tamaño de la fuente más pequeño */
-  padding: 8px 16px; /* Ajustar el padding */
-  --border-radius: 8px; /* Redondeo suave */
-  --width: 100px; /* Ancho personalizado */
-  --height: 40px; /* Altura personalizada */
-}
-
-ion-content {
-  padding: 16px; /* Ajustar el padding del contenido */
-}
-
+/* --- MENÚ LATERAL --- */
 ion-menu {
-  --width: 250px; /* Ajusta el ancho del menú */
+  --width: 250px; /* Ancho del menú */
+  background: #f9f9f9; /* Fondo claro */
+}
+
+ion-toolbar {
+  --background: #4caf50; /* Color verde exitoso */
+  --color: #ffffff; /* Texto blanco */
+}
+
+ion-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Lista del menú */
+ion-list {
+  margin-top: 1rem;
 }
 
 ion-item {
-  --padding-start: 10px; /* Ajustar el padding dentro del ítem */
-  font-size: 14px; /* Tamaño de texto más pequeño */
+  --border-radius: 8px;
+  margin: 0.5rem;
+  --background: #f1f3f5; /* Fondo claro de los ítems */
 }
 
-ion-icon {
-  font-size: 20px; /* Tamaño del ícono */
+ion-item:hover {
+  --background: #e8f5e9; /* Fondo verde claro al pasar el cursor */
+}
+
+.menu-icon {
+  color: #4caf50; /* Iconos en verde */
+}
+
+ion-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* --- ENCABEZADO PRINCIPAL --- */
+.header-container {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #4caf50, #81c784); /* Degradado verde */
+  color: #ffffff;
+  border-radius: 0 0 20px 20px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #f1f8e9;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.content-container {
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.action-button {
+  --background: #4caf50;
+  --color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- CONFIGURACIÓN GENERAL --- */
+ion-content {
+  --background: #f9f9f9; /* Fondo general claro */
+}
+
+div.ion-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

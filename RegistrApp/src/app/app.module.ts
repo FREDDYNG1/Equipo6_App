@@ -3,20 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
-  declarations: [AppComponent, ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  },
-    provideHttpClient(), Camera
+  declarations: [AppComponent], // Declaración de AppComponent
+  imports: [
+
+    HttpClientModule,
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    IonicStorageModule.forRoot(), // Configuración de Ionic Storage
   ],
-  bootstrap: [AppComponent],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideHttpClient(),
+    Camera,
+  ],
+  bootstrap: [AppComponent], // Punto de inicio de la aplicación
 })
 export class AppModule {}
+
+

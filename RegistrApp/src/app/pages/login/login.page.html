@@ -1,60 +1,77 @@
-<app-header titulo="login"></app-header>
+<app-header titulo="Login"></app-header>
 
-<ion-content>
+<ion-content class="login-page">
+  <!-- Spinner de carga -->
+  <app-spinner-carga *ngIf="isLoading" class="overlay-spinner"></app-spinner-carga>
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-lg="3">
-        <ion-card>
-          <ion-img src="/assets/imagen/logo.png"></ion-img>
+      <ion-col size="12" class="center-content">
+        <!-- Logo -->
+        <ion-card class="logo-card">
+          <ion-img src="/assets/imagen/logo.png" class="logo-img"></ion-img>
         </ion-card>
 
-        <ion-card-header>
+        <!-- Título de la app -->
+        <ion-card-header class="app-title">
           <ion-card-title>RegistraApp</ion-card-title>
         </ion-card-header>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-card>
-    <form (ngSubmit)="iniciarSesion()"> <!-- Inicio del formulario -->
+  <!-- Tarjeta del formulario -->
+  <ion-card class="login-card">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
       <ion-list>
-        <!-- Usuario con estilo solid -->
-        <ion-item>
-          <ion-label position="stacked"></ion-label>
-          <ion-input type="email" fill="solid" placeholder="Ingrese su correo" [(ngModel)]="email" name="email" required></ion-input>
+        <!-- Campo de correo -->
+        <ion-item class="input-item">
+          <ion-input
+            type="email"
+            placeholder="Correo electrónico"
+            [(ngModel)]="credentials.username"
+            name="username"
+            #username="ngModel"
+            required
+          ></ion-input>
         </ion-item>
 
-        <!-- Contraseña con estilo outline -->
-        <ion-item>
-          <ion-label position="stacked"></ion-label>
-          <ion-input type="password" fill="outline" placeholder="Ingrese su contraseña" [(ngModel)]="password" name="password" required></ion-input>
+        <!-- Campo de contraseña -->
+        <ion-item class="input-item">
+          <ion-input
+            type="password"
+            placeholder="Contraseña"
+            [(ngModel)]="credentials.password"
+            name="password"
+            #password="ngModel"
+            required
+          ></ion-input>
         </ion-item>
       </ion-list>
 
-      <!-- Spinner de carga (centrado en la pantalla) -->
-      <app-spinner-carga class="centrar-spinner" *ngIf="isLoading"></app-spinner-carga>
-
+      <!-- Botón de inicio de sesión -->
       <div class="ion-padding ion-text-center">
-        <!-- Deshabilitar el botón si faltan datos -->
-        <ion-button type="submit" [disabled]="!email || !password">Iniciar Sesión</ion-button>
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="!loginForm.form.valid || isLoading"
+          class="login-button"
+        >
+          Iniciar Sesión
+        </ion-button>
       </div>
-    </form> <!-- Fin del formulario -->
+    </form>
 
-    <!-- Opción de registro -->
+    <!-- contraseña -->
     <div class="ion-text-center">
-      <ion-button routerLink="/registro" color="primary">Registrarse</ion-button>
+      <ion-button
+        (click)="openRecoveryModal()"
+        fill="clear"
+        class="forgot-password-button"
+      >
+        ¿Olvidaste tu contraseña?
+      </ion-button>
     </div>
-    <!-- recuperar contraseña -->
-    <div class="forgot-password-container">
-      <p class="forgot-password-text">¿Olvidaste tu contraseña?</p>
-      <p class="recovery-link" (click)="openRecoveryModal()">Recuperar Contraseña</p>
-    </div>
-
-
-
-    <!-- Mensaje de login correcto o incorrecto -->
-    <p class="ion-text-center" *ngIf="mensaje">{{ mensaje }}</p>
   </ion-card>
 </ion-content>
 

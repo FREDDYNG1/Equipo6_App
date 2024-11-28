@@ -13,7 +13,7 @@ export class RecoveryModalComponent {
   constructor(private modalController: ModalController) {}
 
   recoverPassword(email: string) {
-    if (!email || email.trim() === '') {
+    if (!email || email.trim() === '' || !this.isValidDomain(email)) {
       this.emailError = true;
       return;
     }
@@ -23,7 +23,12 @@ export class RecoveryModalComponent {
   }
 
   validateEmail() {
-    this.emailError = !this.email || this.email.trim() === '';
+    this.emailError = !this.email || this.email.trim() === '' || !this.isValidDomain(this.email);
+  }
+
+  isValidDomain(email: string): boolean {
+    const domain = email.split('@')[1];
+    return domain === 'alumno' || domain === 'docente';
   }
 
   dismissModal() {

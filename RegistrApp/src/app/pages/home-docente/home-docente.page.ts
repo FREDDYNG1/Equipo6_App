@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importar el servicio Router
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home-docente',
@@ -7,30 +8,50 @@ import { Router } from '@angular/router'; // Importar el servicio Router
   styleUrls: ['./home-docente.page.scss'],
 })
 export class HomeDocentePage implements OnInit {
-  
-
   menuOptions = [
-    { titulo: 'Inicio', 
-      url: '/inicio', 
-      icon: 'home' 
-    },
-    { titulo: 'Perfil', 
-      url: '/perfil', 
-      icon: 'person-outline' 
-    },
-    { titulo: 'Cerrar Sesión', 
-      url: '/logout', 
-      icon: 'log-out-outline' 
-    }
+    { titulo: 'Inicio', url: '/inicio', icon: 'home' },
+    { titulo: 'Perfil', url: '/perfil', icon: 'person-outline' },
+    { titulo: 'Cerrar Sesión', url: '/logout', icon: 'log-out-outline' },
   ];
 
-  constructor(private router: Router) {} // Inyectar el servicio Router
+  saludo: string = '¡Bienvenido!';
+  currentDate: string = ''; // Variable para la fecha actual
 
-  ngOnInit() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  cerrarSesion() {
-    localStorage.removeItem('usuario'); // Limpia los datos de sesión
-    this.router.navigate(['/inicio-app']); // Redirige a la página de inicio de sesión
+  ngOnInit() {
+    this.setCurrentDate(); // Establecer la fecha actual
+    this.loadUser(); // Cargar datos del usuario actual
   }
 
+  // Función para obtener la fecha actual
+  setCurrentDate() {
+    const today = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long', // Día de la semana
+      year: 'numeric', // Año
+      month: 'long', // Mes
+      day: 'numeric', // Día del mes
+    };
+    this.currentDate = today.toLocaleDateString('es-ES', options); // Formato de fecha en español
+  }
+
+  // Función para cargar datos del usuario actual
+  loadUser() {
+    this.authService.getCurrentUser().subscribe(
+      (user) => {
+        if (user && user.name) {
+          this.saludo = `¡Bienvenido, ${user.name}!`;
+        } else {
+          this.saludo = '¡Bienvenido!';
+          // Redirigir al login si no hay usuario autenticado
+          this.router.navigate(['/login']);
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el usuario:', error);
+        this.router.navigate(['/login']); // Redirigir al login en caso de error
+      }
+    );
+  }
 }

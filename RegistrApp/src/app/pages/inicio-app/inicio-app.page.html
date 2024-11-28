@@ -1,22 +1,42 @@
-<ion-header class="ion-padding">
-  <ion-toolbar >
-    <ion-title color="primary">RegistrApp</ion-title>
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title class="app-title">RegistrApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content class="home-page">
+  <!-- Contenedor principal -->
+  <div class="main-container">
+    <!-- Logo y título -->
+    <div class="header-section">
+      <ion-card class="logo-card">
+        <ion-img src="/assets/imagen/logo.png" class="logo-img"></ion-img>
+      </ion-card>
+      <h2 class="app-subtitle">¡Simplifica el registro de asistencia!</h2>
+    </div>
 
-  <ion-card>
-    <ion-img src="/assets/imagen/logo.png"></ion-img>
-  </ion-card>
+    <!-- Botones principales -->
+    <div class="button-section">
+      <ion-button expand="block" color="primary" class="primary-button" routerLink="/login">
+        Iniciar Sesión
+      </ion-button>
+      <ion-button expand="block" color="secondary" class="secondary-button" routerLink="/registro">
+        Registrarse
+      </ion-button>
+    </div>
 
-<ion-card class="custom-card ion-text-center">
-
-  <ion-button routerLink="/login">Entrar</ion-button>
-  <ion-button routerLink="/camara">Camara</ion-button>
-  <ion-button routerLink="/recover-password">Registro</ion-button>
-</ion-card>
-
+    <!-- Sección de información adicional -->
+    <div class="info-section">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Información del Día</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Asiste a las clases puntualmente y registra tu asistencia fácilmente con nuestro sistema.</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
 
 <app-footer></app-footer>
