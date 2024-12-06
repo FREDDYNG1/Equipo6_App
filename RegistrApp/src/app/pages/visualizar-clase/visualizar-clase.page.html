@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clases Registradas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Spinner de carga -->
+  <ion-spinner *ngIf="cargando" name="crescent"></ion-spinner>
+
+  <!-- Lista de clases -->
+  <ion-list *ngIf="!cargando && clases.length > 0">
+    <ion-item *ngFor="let clase of clases">
+      <ion-label>
+        <h2>{{ clase.nombre }}</h2>
+        <p><strong>Profesor:</strong> {{ clase.profesor }}</p>
+        <p><strong>Fecha:</strong> {{ clase.fecha | date: 'longDate' }}</p>
+        <p>{{ clase.descripcion }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje si no hay clases -->
+  <ion-text *ngIf="!cargando && clases.length === 0" color="medium">
+    No hay clases registradas.
+  </ion-text>
+</ion-content>

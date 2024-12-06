@@ -12,8 +12,8 @@ import { RecoveryModalComponent } from 'src/app/components/recovery-modal/recove
 export class LoginPage {
   credentials = {
     groupId: 6,
-    username: '', // Correo electrónico
-    password: '', // Contraseña
+    username: '',
+    password: '',
   };
 
   isLoading: boolean = false;
@@ -21,17 +21,17 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private modalController: ModalController, // Inyectar ModalController
-    private toastController: ToastController // Inyectar ToastController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) {}
 
   // Función para mostrar mensajes en pantalla
   async showToast(message: string, color: string = 'danger') {
     const toast = await this.toastController.create({
       message,
-      duration: 3000, // Duración en milisegundos
-      color, // Color del mensaje (rojo para errores)
-      position: 'top', // Posición del mensaje
+      duration: 3000,
+      color,
+      position: 'top',
     });
     toast.present();
   }
@@ -50,7 +50,7 @@ export class LoginPage {
       return;
     }
 
-    this.isLoading = true; // Mostrar indicador de carga
+    this.isLoading = true;
 
     this.authService.login(this.credentials).subscribe(
       (response: any) => {
@@ -58,7 +58,7 @@ export class LoginPage {
 
         // Extraer el nombre del usuario del correo electrónico
         const emailParts = this.credentials.username.split('@');
-        const userName = emailParts[0]; // Nombre de usuario (antes del @)
+        const userName = emailParts[0];
 
         // Crear objeto de usuario con el nombre y otros datos
         const user = {
@@ -83,10 +83,10 @@ export class LoginPage {
       (error) => {
         console.error('Error en el inicio de sesión:', error);
         this.showToast('Credenciales incorrectas o error en el servidor');
-        this.isLoading = false; // Ocultar indicador de carga en caso de error
+        this.isLoading = false;
       },
       () => {
-        this.isLoading = false; // Ocultar el spinner cuando el observable termina (por seguridad)
+        this.isLoading = false;
       }
     );
   }
