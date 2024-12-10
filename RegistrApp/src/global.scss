@@ -1,37 +1,37 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
+/* Importar los estilos base de Ionic */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+/* Variables para tema claro */
+:root {
+  --ion-background-color: #f8f9fa;
+  --ion-text-color: #333333;
+  --ion-card-background: #ffffff;
+  --ion-input-background: #f1f3f5;
+  --ion-button-background: #4caf50;
+  --ion-button-text-color: #ffffff;
+  --ion-border-color: #e0e0e0;
+}
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* Variables para tema oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #121212;
+    --ion-text-color: #f5f5f5;
+    --ion-card-background: #1e1e1e;
+    --ion-input-background: #2a2a2a;
+    --ion-button-background: #388e3c;
+    --ion-button-text-color: #ffffff;
+    --ion-border-color: #444444;
+  }
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+/* Fondo general */
+body {
+  background-color: var(--ion-background-color);
+  color: var(--ion-text-color);
+  font-family: "Roboto", sans-serif;
+}

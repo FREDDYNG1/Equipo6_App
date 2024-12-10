@@ -42,6 +42,8 @@
     "cordova-sqlite-storage": "^6.1.0",
     "html2canvas": "^1.4.1",
     "ionicons": "^7.0.0",
+    "jsqr": "^1.4.0",
+    "jwt-decode": "^4.0.0",
     "ng-qrcode": "^18.0.0",
     "qrcode": "^1.5.4",
     "rxjs": "^7.5.0",

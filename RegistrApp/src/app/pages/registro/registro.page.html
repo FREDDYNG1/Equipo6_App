@@ -1,15 +1,16 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar-register">
+    <ion-title class="app-title-register">RegistrApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="register-page">
   <ion-grid>
     <ion-row>
       <ion-col size="12" class="center-content">
-        <!-- Logo -->
-        <ion-card class="logo-card">
-          <ion-img src="/assets/imagen/logo.png" class="logo-img"></ion-img>
-        </ion-card>
-
-        <!-- Título de la app -->
+        <!-- Logo o título de la app -->
         <ion-card-header class="app-title">
-          <ion-card-title>RegistraApp</ion-card-title>
+          <ion-card-title>Registro de Usuario</ion-card-title>
         </ion-card-header>
       </ion-col>
     </ion-row>
@@ -19,15 +20,6 @@
   <ion-card class="register-card">
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-list>
-        <!-- Placeholder QR -->
-        <div class="qr-placeholder-container">
-          <img
-            *ngIf="!user.name && !user.username && !user.email && !user.password"
-            src="/assets/images/qr-placeholder.webp"
-            alt="QR Placeholder"
-            class="qr-placeholder"
-          />
-        </div>
 
         <!-- Campo Nombres -->
         <ion-item class="input-item">

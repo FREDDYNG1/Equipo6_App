@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AsistenciaService } from 'src/app/services/asistencia.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 @Component({
   selector: 'app-asistencia',
@@ -8,47 +8,49 @@ import { AsistenciaService } from 'src/app/services/asistencia.service';
   styleUrls: ['./asistencia.page.scss'],
 })
 export class AsistenciaPage implements OnInit {
-  clases: any[] = []; // Lista de clases
-  showModal = false; // Controla la visibilidad del modal
-  claseSeleccionada: any = null; // Clase actualmente seleccionada
-  isLoading = false; // Indicador de carga
+  claseId: number | null = null;
+  studentName: string = ''; // Nombre del alumno
+  successMessage: string | null = null; // Mensaje de éxito
+  errorMessage: string | null = null; // Mensaje de error
 
-  constructor(private asistenciaService: AsistenciaService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private supabaseService: SupabaseService
+  ) {}
 
   ngOnInit() {
-    this.cargarClases();
+    // Obtener el ID de la clase desde la URL
+    this.claseId = Number(this.route.snapshot.paramMap.get('id'));
   }
 
-  /**
-   * Carga la lista de clases desde el backend
-   */
-  cargarClases() {
-    this.isLoading = true;
-    this.asistenciaService.obtenerClases().subscribe(
-      (data) => {
-        this.clases = data;
-        this.isLoading = false;
-      },
-      (error) => {
-        console.error('Error al cargar las clases:', error);
-        this.isLoading = false;
-      }
-    );
-  }
+  async registerAttendance() {
+    if (!this.studentName.trim()) {
+      this.errorMessage = 'Por favor ingresa tu nombre';
+      return;
+    }
 
-  /**
-   * Abre el modal con los detalles de la asistencia de la clase seleccionada
-   */
-  verAsistencia(clase: any) {
-    this.claseSeleccionada = clase;
-    this.showModal = true;
-  }
+    if (!this.claseId) {
+      this.errorMessage = 'No se pudo identificar la clase';
+      return;
+    }
 
-  /**
-   * Cierra el modal
-   */
-  cerrarModal() {
-    this.showModal = false;
-    this.claseSeleccionada = null;
+    try {
+      // Llamar al servicio para registrar la asistencia
+      const asistencia = {
+        clase_id: this.claseId,
+        nombre_alumno: this.studentName,
+        fecha_asistencia: new Date(),
+      };
+
+      await this.supabaseService.registrarAsistencia(asistencia);
+
+      this.successMessage = 'Asistencia registrada correctamente';
+      this.errorMessage = null;
+      this.studentName = ''; // Limpiar el campo de nombre
+    } catch (error) {
+      this.successMessage = null;
+      this.errorMessage = 'Error al registrar asistencia';
+      console.error('Error al registrar asistencia:', error);
+    }
   }
 }

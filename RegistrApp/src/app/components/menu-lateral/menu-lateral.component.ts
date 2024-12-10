@@ -14,12 +14,15 @@ export class MenuLateralComponent {
    * Método para cerrar sesión
    */
   logout() {
+    console.log('Clic en logout');
     this.authService.logout();
-    this.router.navigate(['/login']).then(() => {
-      console.log('Sesión cerrada y redirigido a /login');
-    }).catch((error) => {
-      console.error('Error al redirigir:', error);
-    });
+    this.router
+      .navigate(['/login'])
+      .then(() => {
+        console.log('Redirigido a /login');
+      })
+      .catch((error) => {
+        console.error('Error al redirigir:', error);
+      });
   }
-
 }

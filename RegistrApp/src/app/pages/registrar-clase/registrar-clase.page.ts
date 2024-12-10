@@ -7,43 +7,46 @@ import { SupabaseService } from 'src/app/services/supabase.service';
   styleUrls: ['./registrar-clase.page.scss'],
 })
 export class RegistrarClasePage {
-  nombre: string = '';
-  profesor: string = '';
-  descripcion: string = '';
-  fecha: string = '';
+  nombreAlumno: string = '';
+  asignatura: string = '';
+  fecha: string = ''; // Este campo será asignado automáticamente.
 
   constructor(private supabaseService: SupabaseService) {}
 
+  // Método para obtener la fecha actual en formato YYYY-MM-DD
+  obtenerFechaActual(): string {
+    const hoy = new Date();
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Mes comienza en 0, por eso +1
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    return `${anio}-${mes}-${dia}`;
+  }
+
   async registrarClase() {
     try {
-      // Validación de campos
-      if (!this.nombre || !this.profesor || !this.descripcion || !this.fecha) {
-        alert('Por favor, completa todos los campos.');
+      if (!this.nombreAlumno || !this.asignatura) {
+        console.error('Por favor completa todos los campos.');
         return;
       }
 
-      // Datos de la clase
+      // Asignar la fecha automáticamente
+      this.fecha = this.obtenerFechaActual();
+
       const clase = {
-        nombre: this.nombre,
-        profesor: this.profesor,
-        descripcion: this.descripcion,
-        fecha: this.fecha, // Asegúrate de que el formato coincida con el tipo `date` en la tabla
+        nombre_alumno: this.nombreAlumno,
+        asignatura: this.asignatura,
+        fecha: this.fecha,
       };
 
-      // Llamada al servicio para registrar
       const resultado = await this.supabaseService.registrarClase(clase);
-      console.log('Clase registrada:', resultado);
+      console.log('Clase registrada exitosamente:', resultado);
 
-      // Limpiar formulario después de enviar
-      this.nombre = '';
-      this.profesor = '';
-      this.descripcion = '';
+      // Limpiar el formulario después de registrar
+      this.nombreAlumno = '';
+      this.asignatura = '';
       this.fecha = '';
-
-      alert('Clase registrada exitosamente.');
     } catch (error) {
       console.error('Error al registrar la clase:', (error as any).message);
-      alert('Hubo un error al registrar la clase.');
     }
   }
 }

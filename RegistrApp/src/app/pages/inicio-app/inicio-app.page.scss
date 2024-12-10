@@ -1,90 +1,138 @@
-/* Fondo general */
-.home-page {
-  --background: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
+/* Variables de colores para temas claros y oscuros */
+:root {
+  --background-light: #f8f9fa;
+  --background-dark: #121212;
+  --text-light: #37474f;
+  --text-dark: #e0e0e0;
+  --primary-light: #ffe0b2;
+  --primary-dark: #6d4c41;
+  --primary-hover-light: #ffcc80;
+  --primary-hover-dark: #5d4037;
+  --secondary-light: #e1bee7;
+  --secondary-dark: #7b1fa2;
+  --secondary-hover-light: #ce93d8;
+  --secondary-hover-dark: #6a1b9a;
+  --card-light: #ffffff;
+  --card-dark: #1e1e1e;
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-light: var(--background-dark);
+    --text-light: var(--text-dark);
+    --primary-light: var(--primary-dark);
+    --primary-hover-light: var(--primary-hover-dark);
+    --secondary-light: var(--secondary-dark);
+    --secondary-hover-light: var(--secondary-hover-dark);
+    --card-light: var(--card-dark);
+    --shadow-light: var(--shadow-dark);
+  }
+}
+
+/* General */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-light);
+  color: var(--text-light);
 }
 
 /* Header */
 .custom-toolbar {
-  --background: transparent;
-  --border-color: transparent;
+  background: linear-gradient(to right, #b2ebf2, #81d4fa);
+  color: var(--text-light);
 }
 
 .app-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #4caf50;
+  text-align: center;
 }
 
-/* Sección del logo y subtítulo */
-.header-section {
-  margin-top: 2rem;
+/* Main Container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
 }
 
-.logo-card {
-  --background: none;
-  box-shadow: none;
-  margin: 0 auto 1rem;
+/* Logo Container */
+.logo-container {
+  margin-bottom: 20px;
 }
 
-.logo-img {
-  width: 100px;
-  height: auto;
+.logo-image {
+  max-width: 150px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px var(--shadow-light);
 }
 
-.app-subtitle {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #666666;
-  margin-bottom: 1.5rem;
-}
-
-/* Botones principales */
+/* Button Section */
 .button-section {
-  margin-top: 1rem;
   width: 100%;
+  max-width: 300px;
+}
+
+.primary-button,
+.secondary-button {
+  font-size: 1rem;
+  border-radius: 50px;
+  margin-bottom: 15px;
+  border: none;
+  box-shadow: 0px 2px 4px var(--shadow-light);
 }
 
 .primary-button {
-  --background: #4caf50;
-  --color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: var(--primary-light);
+  color: var(--text-light);
+}
+
+.primary-button:hover {
+  background: var(--primary-hover-light);
 }
 
 .secondary-button {
-  --background: #ffffff;
-  --color: #4caf50;
-  border: 1px solid #4caf50;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 8px;
+  background: var(--secondary-light);
+  color: var(--text-light);
 }
 
-/* Sección de información adicional */
+.secondary-button:hover {
+  background: var(--secondary-hover-light);
+}
+
+/* Info Section */
 .info-section {
-  margin-top: 2rem;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
 }
 
 ion-card {
-  --background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-light);
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px var(--shadow-light);
 }
 
 ion-card-title {
-  font-size: 1.2rem;
-  color: #4caf50;
+  color: var(--text-light);
+  font-weight: bold;
 }
 
-ion-card-content {
-  font-size: 1rem;
-  color: #666666;
+ion-card-content p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* Footer */
+app-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.8rem;
 }

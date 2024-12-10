@@ -1,64 +1,88 @@
-.register-page {
-  --background: #f8f9fa; /* Fondo claro */
-}
-
-.logo-card {
-  --background: none;
-  box-shadow: none;
-  margin-bottom: 1.5rem;
-}
-
-.logo-img {
-  width: 100px;
-  height: auto;
-  margin: 0 auto;
-}
-
-.app-title {
+/* Header - Registro */
+.custom-toolbar-register {
+  --background: #28a745; /* Verde moderno */
+  --color: white;
   text-align: center;
+}
+
+.app-title-register {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Página de Registro */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.center-content {
+  text-align: center;
+}
+
+/* Título del Formulario */
+.app-title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #4caf50; /* Verde principal */
-  margin-bottom: 2rem;
+  color: var(--ion-color-dark);
+  margin-bottom: 20px;
 }
 
+/* Formulario de Registro */
 .register-card {
-  margin: 0 auto;
-  padding: 1.5rem;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  width: 100%;
   max-width: 400px;
-  border-radius: 12px;
-  --background: #ffffff;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .input-item {
-  --background: #f1f3f5; /* Fondo de los campos */
-  --border-radius: 8px;
-  margin-bottom: 1rem;
+  --background: var(--ion-color-light);
+  --border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.register-button {
-  --background: #4caf50;
-  --color: #ffffff;
+.input-item ion-label {
+  font-size: 0.9rem;
+  color: var(--ion-color-dark);
+}
+
+.input-item ion-input {
+  --padding-start: 10px;
   font-size: 1rem;
-  font-weight: 500;
-  border-radius: 8px;
 }
 
-.spinner-container {
-  margin-top: 1rem;
-  text-align: center;
+/* Botón Registrar */
+.register-button {
+  --background: #28a745; /* Verde para registro */
+  --background-hover: #218838;
+  --border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 20px;
 }
-.qr-placeholder-container {
+
+.register-button:disabled {
+  opacity: 0.7;
+}
+
+/* Spinner de Carga */
+.spinner-container {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
 }
 
-.qr-placeholder {
-  width: 100px;
-  height: auto;
-  opacity: 0.8;
+.spinner-container ion-spinner {
+  --color: var(--ion-color-primary);
 }

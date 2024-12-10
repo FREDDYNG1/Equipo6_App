@@ -1,75 +1,105 @@
-.login-page {
-  --background: #f8f9fa;
+/* General */
+:root {
+  --ion-color-primary: #007bff;
+  --ion-color-secondary: #6c757d;
+  --ion-color-light: #f8f9fa;
+  --ion-color-dark: #343a40;
+  --ion-color-accent: #17a2b8;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--ion-color-light);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.custom-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Spinner */
+.overlay-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Logo */
 .logo-card {
-  --background: none;
+  background: none;
   box-shadow: none;
-  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .logo-img {
   width: 120px;
   height: auto;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
-.app-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 2rem;
-}
-
+/* Form Card */
 .login-card {
-  margin: 0 auto;
-  padding: 1.5rem;
-  max-width: 400px;
-  border-radius: 12px;
-  --background: #fff;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin: 20px;
 }
 
 .input-item {
-  --border-radius: 8px;
-  margin-bottom: 1rem;
-  --background: #f1f3f5;
+  --background: var(--ion-color-light);
+  --border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-item ion-input {
+  --padding-start: 10px;
+  font-size: 1rem;
 }
 
 .login-button {
-  --background: #4caf50;
-  --color: #fff;
+  --background: var(--ion-color-primary);
+  --background-hover: #0056b3;
+  --border-radius: 5px;
   font-size: 1rem;
-  border-radius: 8px;
+  font-weight: bold;
 }
 
-.register-button,
+.login-button:disabled {
+  opacity: 0.7;
+}
+
+/* Forgot Password Button */
 .forgot-password-button {
   font-size: 0.9rem;
-  color: #007bff;
-  text-transform: capitalize;
-  margin: 0;
+  color: var(--ion-color-secondary);
+  margin-top: 10px;
+  text-align: center;
+  display: block;
+
 }
 
-.forgot-password-button {
-  color: #6c757d;
-}
-.overlay-spinner {
-  position: fixed; /* Fijar el spinner en la pantalla */
-  top: 50%; /* Centrar verticalmente */
-  left: 50%; /* Centrar horizontalmente */
-  transform: translate(-50%, -50%); /* Ajustar el punto de referencia al centro */
-  z-index: 1000; /* Asegurarse de que esté encima de otros elementos */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
-  width: 100%; /* Abarcar todo el ancho */
-  height: 100%; /* Abarcar todo el alto */
-}
-
-app-spinner-carga {
-  width: 50px; /* Tamaño del spinner */
-  height: 50px;
+/* Footer */
+app-footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--ion-color-secondary);
+  text-align: center;
 }

@@ -1,50 +1,30 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Asistencia</ion-title>
+    <ion-title>Registro de Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <!-- Spinner de carga -->
-  <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+<ion-content>
+  <div class="asistencia-container">
+    <h2>Confirma tu asistencia</h2>
 
-  <!-- Lista de Clases -->
-  <ion-list *ngIf="!isLoading && clases.length > 0">
-    <ion-list-header>
-      <ion-label>Clases Registradas</ion-label>
-    </ion-list-header>
+    <!-- Mostrar mensajes de éxito o error -->
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
-    <!-- Clases disponibles -->
-    <ion-item *ngFor="let clase of clases" (click)="verAsistencia(clase)">
-      <ion-label>
-        <h2>{{ clase.nombre }}</h2>
-        <p>Fecha: {{ clase.fecha }}</p>
-      </ion-label>
-      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    <!-- Campo para ingresar el nombre del alumno -->
+    <ion-item>
+      <ion-label position="floating">Tu nombre</ion-label>
+      <ion-input [(ngModel)]="studentName"></ion-input>
     </ion-item>
-  </ion-list>
 
-  <!-- Modal para Asistencia -->
-  <ion-modal [isOpen]="showModal">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>{{ claseSeleccionada?.nombre }}</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="cerrarModal()">Cerrar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-item *ngFor="let alumno of claseSeleccionada?.asistencia">
-            <ion-label>
-              <h2>{{ alumno.correo }}</h2>
-              <p>{{ alumno.estado }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+    <!-- Botón para registrar asistencia -->
+    <ion-button expand="block" (click)="registerAttendance()">
+      Registrar Asistencia
+    </ion-button>
+  </div>
 </ion-content>

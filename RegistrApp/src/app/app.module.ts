@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent], // Declaración de AppComponent
   imports: [
-
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),

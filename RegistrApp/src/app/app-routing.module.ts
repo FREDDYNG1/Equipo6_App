@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+
+
 
 
 const routes: Routes = [
@@ -15,11 +18,13 @@ const routes: Routes = [
   {
     path: 'home-docente',
     loadChildren: () => import('./pages/home-docente/home-docente.module').then(m => m.HomeDocentePageModule),
+    canActivate: [AuthGuard] // Proteger la ruta
 
   },
   {
     path: 'home-alumno',
     loadChildren: () => import('./pages/home-alumno/home-alumno.module').then(m => m.HomeAlumnoPageModule),
+    canActivate: [AuthGuard] // Proteger la ruta
 
   },
   {
@@ -55,6 +60,12 @@ const routes: Routes = [
     path: 'visualizar-clase',
     loadChildren: () => import('./pages/visualizar-clase/visualizar-clase.module').then( m => m.VisualizarClasePageModule)
   },
+  {
+    path: '**',
+    redirectTo: 'inicio-app'
+  }
+
+
 
 
 

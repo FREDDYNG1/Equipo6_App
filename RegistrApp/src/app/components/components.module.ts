@@ -29,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     MenuLateralComponent,
-    RecoveryModalComponent
+    RecoveryModalComponent,
   ]
 })
 export class ComponentsModule { }

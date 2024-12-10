@@ -1,79 +1,105 @@
-.generate-qr-page {
+/* Header verde centrado */
+ion-header {
+  ion-toolbar.custom-header {
+    --background: #4caf50; /* Verde moderno */
+    --color: white; /* Texto blanco */
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
   text-align: center;
-  background-color: #ffffff; /* Fondo blanco */
-  padding: 1rem;
 }
 
+/* Contenido principal */
+.qr-content {
+  --background: #f5f5f5; /* Fondo suave */
+  padding: 16px;
+}
+
+/* Contenedor principal */
 .qr-container {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #ffffff; /* Fondo blanco */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra moderna */
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
 }
 
-.qr-wrapper {
-  width: 240px;
-  height: 240px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px dashed #4caf50; /* Borde verde más grueso */
-  border-radius: 15px;
-  background-color: #f4f8f5; /* Fondo más suave */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  transition: transform 0.3s ease; /* Animación al pasar el cursor */
-}
-
-.qr-wrapper:hover {
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-}
-
-.qr-code {
-  width: 90%; /* Ajustar ligeramente dentro del contenedor */
-  height: auto;
-}
-
-.qr-placeholder {
-  width: 80%;
-  opacity: 0.6; /* Más suavidad para el placeholder */
-}
-
-.qr-text-display {
-  margin-top: 1rem;
-}
-
-.qr-text-display h2 {
+/* Título */
+.title {
   font-size: 1.2rem;
-  font-weight: bold;
-  color: #4caf50; /* Verde principal */
-  word-break: break-word; /* Evitar desbordes en textos largos */
-  margin: 0;
+  font-weight: 500;
+  color: #333; /* Color oscuro */
+  margin-bottom: 20px;
 }
 
-ion-item {
-  margin-top: 1.5rem;
+/* Selector de clase */
+.styled-select {
+  margin: 20px 0;
   --background: #f9f9f9; /* Fondo claro */
   --border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-ion-item ion-label {
+/* Estilo base para botones */
+.button-base {
+  --border-radius: 8px;
   font-size: 1rem;
-  color: #4caf50; /* Verde para el texto */
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra moderna */
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.submit {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  --background: #4caf50;
-  --color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra al botón */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.button-base:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.submit:hover {
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Más sombra */
+/* Botón Generar */
+.generate-btn {
+  --background: #4caf50; /* Verde moderno */
+  --background-activated: #43a047; /* Verde más oscuro */
+}
+
+/* Botón Compartir */
+.share-btn {
+  --background: #2196f3; /* Azul moderno */
+  --background-activated: #1976d2; /* Azul más oscuro */
+}
+
+/* QR generado */
+.qr-output {
+  margin-top: 30px;
+
+  .qr-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #4caf50; /* Verde principal */
+    margin-bottom: 10px;
+  }
+
+  .qr-wrapper {
+    padding: 10px;
+    border: 2px solid #e0e0e0; /* Borde gris claro */
+    border-radius: 8px;
+    background: #f9f9f9; /* Fondo claro */
+    display: inline-block;
+  }
+
+  img {
+    max-width: 200px;
+    height: auto;
+  }
 }

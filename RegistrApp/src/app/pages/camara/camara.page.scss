@@ -39,15 +39,6 @@ ion-title {
 }
 
 /* Botones */
-ion-row {
-  margin-top: 1rem;
-  width: 100%;
-}
-
-ion-col {
-  display: flex;
-  justify-content: center;
-}
 
 ion-button {
   border-radius: 8px;
@@ -106,4 +97,13 @@ ion-button[color="secondary"] {
 .result ion-button:hover {
   --background: #4caf50;
   --color: #ffffff;
+}
+ion-row {
+  margin-top: 1.5rem; /* Espacio superior */
+  justify-content: space-between; /* Separar botones */
+}
+
+ion-col {
+  display: flex;
+  justify-content: center;
 }

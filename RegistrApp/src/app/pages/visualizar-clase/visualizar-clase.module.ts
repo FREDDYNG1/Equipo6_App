@@ -13,8 +13,8 @@ import { VisualizarClasePage } from './visualizar-clase.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    VisualizarClasePageRoutingModule
-  ],
+    VisualizarClasePageRoutingModule,
+],
   declarations: [VisualizarClasePage]
 })
 export class VisualizarClasePageModule {}
