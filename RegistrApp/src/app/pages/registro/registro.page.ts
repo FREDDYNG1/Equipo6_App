@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../services/supabase.service';
 import { ToastController } from '@ionic/angular';
-import { Router } from '@angular/router'; // Importar Router
 
 @Component({
   selector: 'app-registro',
@@ -9,92 +9,80 @@ import { Router } from '@angular/router'; // Importar Router
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage {
-  user = {
-    name: '',
-    groupId: 6,
-    password: '',
-    username: '',
-    email: '',
-  };
-  isLoading: boolean = false; // Indicador de carga
+  name = '';
+  lastName = '';
+  email = '';
+  password = '';
+  isLoading = false;
 
   constructor(
-    private authService: AuthService,
-    private toastController: ToastController,
-    private router: Router // Inyectar Router
+    private supabaseService: SupabaseService,
+    private router: Router,
+    private toastController: ToastController
   ) {}
 
-  // Función para mostrar mensajes en pantalla
+  // Mostrar mensajes al usuario
   async showToast(message: string, color: string = 'danger') {
     const toast = await this.toastController.create({
       message,
-      duration: 3000, // Duración del mensaje
-      color, // Color del mensaje
-      position: 'top', // Posición en pantalla
+      duration: 3000,
+      color,
+      position: 'top',
     });
     toast.present();
   }
 
-  // Validar datos antes de enviar
+  // Validar campos del formulario
   validateInputs(): boolean {
-    // Eliminar espacios en blanco de los campos
-    this.user.name = this.user.name.trim();
-    this.user.email = this.user.email.trim();
-    this.user.password = this.user.password.trim();
-
-    // Validar que no haya campos vacíos
-    if (!this.user.name || !this.user.email || !this.user.password) {
+    if (!this.name.trim() || !this.lastName.trim() || !this.email.trim() || !this.password.trim()) {
       this.showToast('Por favor, complete todos los campos.');
       return false;
     }
 
     // Validar formato del correo
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(this.user.email)) {
+    if (!emailPattern.test(this.email)) {
       this.showToast('Por favor, ingrese un correo válido.');
       return false;
     }
 
-    // Validar que no haya espacios en la contraseña
-    if (this.user.password.includes(' ')) {
-      this.showToast('La contraseña no debe contener espacios.');
-      return false;
-    }
-
-    return true; // Los datos son válidos
+    return true;
   }
 
-  register() {
-    // Validar los campos antes de proceder
+  async register() {
     if (!this.validateInputs()) {
       return;
     }
 
-    this.isLoading = true; // Mostrar indicador de carga
-    console.log('Datos enviados al servicio:', this.user);
+    this.isLoading = true;
 
-    this.authService.register(this.user).subscribe(
-      (response) => {
-        console.log('Registro exitoso:', response);
-        this.showToast('Usuario registrado exitosamente', 'success'); // Mensaje de éxito
-
-        // Redirigir a la página de login
-        this.router.navigate(['/login']);
-
-        this.isLoading = false; // Ocultar indicador de carga
-      },
-      (error) => {
-        console.error('Error en el registro:', error);
-
-        // Verificar si el error es por correo ya registrado
-        if (error.status === 409) {
-          this.showToast('El correo ya está registrado. Intente con otro.', 'danger');
-        } else {
-          this.showToast('Error al registrar usuario. Intente nuevamente.', 'danger');
-        }
-
-        this.isLoading = false; // Ocultar indicador de carga
+    try {
+      // Registrar usuario en Supabase Auth
+      const { error: authError } = await this.supabaseService.signUp(this.email, this.password);
+      if (authError) {
+        throw new Error(authError.message);
       }
-    );
+
+      // Registrar información adicional en la tabla "users"
+      const user = {
+        name: this.name.trim(),
+        last_name: this.lastName.trim(),
+        email: this.email.trim(),
+        password: '********', // Valor genérico para cumplir con la restricción NOT NULL
+      };
+      const { error: dbError } = await this.supabaseService.addUser(user);
+
+      if (dbError) {
+        throw new Error(dbError.message);
+      }
+
+      this.showToast('¡Registro exitoso!', 'success');
+      this.router.navigate(['/login']);
+    } catch (error: any) {
+      console.error('Error en el registro:', error.message);
+      this.showToast('Error en el registro: ' + error.message);
+    } finally {
+      this.isLoading = false;
+    }
   }
 }

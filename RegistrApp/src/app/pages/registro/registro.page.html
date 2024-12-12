@@ -1,87 +1,65 @@
 <ion-header>
   <ion-toolbar class="custom-toolbar-register">
-    <ion-title class="app-title-register">RegistrApp</ion-title>
+    <ion-title class="app-title-register">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="register-page">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" class="center-content">
-        <!-- Logo o título de la app -->
-        <ion-card-header class="app-title">
-          <ion-card-title>Registro de Usuario</ion-card-title>
-        </ion-card-header>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <!-- Formulario de registro -->
+  <!-- Tarjeta de Registro -->
   <ion-card class="register-card">
-    <form (ngSubmit)="register()" #registerForm="ngForm">
-      <ion-list>
+    <ion-list>
+      <!-- Nombre -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="name" name="name" required></ion-input>
+      </ion-item>
 
-        <!-- Campo Nombres -->
-        <ion-item class="input-item">
-          <ion-label position="floating">Nombres</ion-label>
-          <ion-input
-            [(ngModel)]="user.name"
-            name="name"
-            type="text"
-            required
-          ></ion-input>
-        </ion-item>
+      <!-- Apellido -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="lastName" name="lastName" required></ion-input>
+      </ion-item>
 
-        <!-- Campo Apellidos -->
-        <ion-item class="input-item">
-          <ion-label position="floating">Apellidos</ion-label>
-          <ion-input
-            [(ngModel)]="user.username"
-            name="username"
-            type="text"
-            required
-          ></ion-input>
-        </ion-item>
+      <!-- Correo Electrónico -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input
+          [(ngModel)]="email"
+          type="email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
 
-        <!-- Campo Correo Electrónico -->
-        <ion-item class="input-item">
-          <ion-label position="floating">Correo Electrónico</ion-label>
-          <ion-input
-            [(ngModel)]="user.email"
-            name="email"
-            type="email"
-            required
-          ></ion-input>
-        </ion-item>
+      <!-- Contraseña -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input
+          [(ngModel)]="password"
+          type="password"
+          name="password"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-list>
 
-        <!-- Campo Contraseña -->
-        <ion-item class="input-item">
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input
-            [(ngModel)]="user.password"
-            name="password"
-            type="password"
-            required
-          ></ion-input>
-        </ion-item>
-      </ion-list>
-
-      <!-- Botón Registrar -->
-      <div class="ion-padding ion-text-center">
-        <ion-button
-          type="submit"
-          expand="block"
-          [disabled]="!registerForm.form.valid || isLoading"
-          class="register-button"
-        >
-          Registrar
-        </ion-button>
-      </div>
-
-      <!-- Spinner de carga -->
-      <div class="spinner-container" *ngIf="isLoading">
-        <ion-spinner></ion-spinner>
-      </div>
-    </form>
+    <!-- Botón de Registro -->
+    <div class="ion-text-center">
+      <ion-button
+        expand="block"
+        class="register-button"
+        (click)="register()"
+        [disabled]="isLoading"
+      >
+        {{ isLoading ? 'Registrando...' : 'Registrarse' }}
+      </ion-button>
+    </div>
   </ion-card>
+
+  <!-- Spinner de carga -->
+  <div *ngIf="isLoading" class="spinner-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 </ion-content>
+
+<app-footer></app-footer>

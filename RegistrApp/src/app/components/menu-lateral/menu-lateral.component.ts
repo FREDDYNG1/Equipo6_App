@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { SupabaseService } from 'src/app/services/supabase.service'; // Importar SupabaseService
 
 @Component({
   selector: 'app-menu-lateral',
@@ -8,21 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-lateral.component.scss'],
 })
 export class MenuLateralComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {}
 
   /**
    * Método para cerrar sesión
    */
-  logout() {
-    console.log('Clic en logout');
-    this.authService.logout();
-    this.router
-      .navigate(['/login'])
-      .then(() => {
-        console.log('Redirigido a /login');
-      })
-      .catch((error) => {
-        console.error('Error al redirigir:', error);
-      });
+  async signOut() {
+    try {
+      // Cerrar sesión en Supabase
+      await this.supabaseService.signOut();
+
+      console.log('Sesión cerrada exitosamente.');
+
+      // Redirigir al login
+      await this.router.navigate(['/login']);
+      console.log('Redirigido a /login');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', (error as any).message);
+    }
   }
 }

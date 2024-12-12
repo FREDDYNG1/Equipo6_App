@@ -1,109 +1,146 @@
-/* Fondo general */
-ion-content {
-  --background: #f9f9f9; /* Fondo claro */
+.content-background {
+  --background: #f5f5f5; /* Fondo claro */
+  padding: 1.5rem;
 }
 
-/* Encabezado */
-ion-toolbar {
-  --background: #4caf50; /* Verde exitoso */
-  --color: #ffffff; /* Texto blanco */
-}
-
-ion-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Contenedor principal */
-.scan-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.header-title {
   text-align: center;
-  padding: 2rem 1rem;
-}
-
-.scan-container img {
-  width: 120px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
-}
-
-.scan-container h6 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #333333;
-  margin-bottom: 2rem;
+  color: white;
 }
 
-/* Botones */
-
-ion-button {
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-ion-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-ion-button[color="primary"] {
-  --background: #4caf50; /* Verde principal */
-  --color: #ffffff;
-}
-
-ion-button[color="secondary"] {
-  --background: #81c784; /* Verde más claro */
-  --color: #ffffff;
-}
-
-/* Resultado del escaneo */
-.result {
-  margin-top: 2rem;
+.info-card {
+  margin: 1rem auto;
   padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #ffffff; /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.result p {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333333;
+.info-header {
+  border-bottom: 1px solid #ddd; /* Línea divisoria */
   margin-bottom: 0.5rem;
 }
 
-.result div {
-  font-size: 0.9rem;
+.info-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #4a4a4a; /* Gris oscuro */
+}
+
+.info-container {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.student-name {
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #4caf50;
+  color: #0056b3; /* Azul institucional */
+  margin: 0.5rem 0;
 }
 
-.result ion-button {
-  --background: transparent;
-  --border-color: #4caf50;
-  --color: #4caf50;
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.result ion-button:hover {
-  --background: #4caf50;
-  --color: #ffffff;
-}
-ion-row {
-  margin-top: 1.5rem; /* Espacio superior */
-  justify-content: space-between; /* Separar botones */
-}
-
-ion-col {
+.subject-info {
   display: flex;
   justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #555555; /* Gris medio */
+  margin-top: 0.5rem;
+}
+
+.subject-icon {
+  font-size: 1.4rem;
+  color: #0056b3;
+  margin-right: 0.5rem;
+}
+
+.button-row {
+  margin-top: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-button {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 3.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.action-button:active {
+  transform: scale(0.98); /* Pequeño efecto al hacer clic */
+}
+
+/* --- MODO OSCURO --- */
+@media (prefers-color-scheme: dark) {
+  .content-background {
+    --background: #121212; /* Fondo oscuro */
+    color: #ffffff; /* Texto claro */
+  }
+
+  .header-title {
+    color: #b9f6ca; /* Verde claro */
+  }
+
+  .info-card {
+    background-color: #1e1e1e; /* Fondo oscuro para las tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más fuerte */
+  }
+
+  .info-header {
+    border-bottom: 1px solid #333; /* Línea divisoria tenue */
+  }
+
+  .info-title {
+    color: #e0e0e0; /* Texto claro */
+  }
+
+  .student-name {
+    color: #81d4fa; /* Azul claro */
+  }
+
+  .subject-info {
+    color: #bbbbbb; /* Gris claro */
+  }
+
+  .subject-icon {
+    color: #81d4fa; /* Azul claro */
+  }
+
+  .action-button {
+    background-color: #0056b3; /* Azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+  }
+
+  .action-button:active {
+    transform: scale(0.98);
+  }
+}
+ion-button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+ion-header {
+  ion-toolbar.custom-header {
+    --background: #4caf50; /* Color verde principal */
+    --color: white; /* Color del texto */
+    display: flex;
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  }
+
+  ion-title.header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 @Component({
   selector: 'app-perfil-estudiante',
@@ -14,19 +15,30 @@ export class PerfilEstudiantePage implements OnInit {
     profilePicture: 'assets/images/profile-placeholder.webp', // Ruta a la imagen de perfil
   };
 
-  constructor() {}
+  // Nueva propiedad para almacenar la cantidad de clases asistidas
+  attendedClassesCount: number = 0;
+
+  constructor(private supabaseService: SupabaseService) {}
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // Si no vas a implementar nada en ngOnInit por ahora, puedes quitar esta línea:
+    // throw new Error('Method not implemented.');
   }
 
   editProfile() {
-    // Lógica para editar el perfil
     console.log('Editar perfil');
   }
 
   logout() {
-    // Lógica para cerrar sesión
     console.log('Cerrar sesión');
   }
-}
 
+  async ionViewWillEnter() {
+    try {
+      // Llamamos a obtenerClasesAsistidas del servicio y guardamos el resultado
+      this.attendedClassesCount = await this.supabaseService.obtenerClasesAsistidas();
+    } catch (error: any) {
+      console.error('Error al obtener clases asistidas:', error.message);
+    }
+  }
+}

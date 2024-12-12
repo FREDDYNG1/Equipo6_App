@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recovery-modal',
@@ -10,25 +11,36 @@ export class RecoveryModalComponent {
   email: string = ''; // Almacena el correo electrónico
   emailError: boolean = false; // Maneja el estado de error
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private router: Router
+  ) {}
 
-  recoverPassword(email: string) {
-    if (!email || email.trim() === '' || !this.isValidDomain(email)) {
+  recoverPassword(email: string): void {
+    if (
+      !email ||
+      email.trim() === '' ||
+      !this.isValidEmail(email) ||
+      !this.isValidDomain(email)
+    ) {
       this.emailError = true;
       return;
     }
 
     console.log('Correo enviado para recuperación:', email);
+
     this.dismissModal();
+    this.router.navigate(['/login']);
   }
 
-  validateEmail() {
-    this.emailError = !this.email || this.email.trim() === '' || !this.isValidDomain(this.email);
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   isValidDomain(email: string): boolean {
     const domain = email.split('@')[1];
-    return domain === 'alumno' || domain === 'docente';
+    return domain === 'alumno.com' || domain === 'docente.com';
   }
 
   dismissModal() {

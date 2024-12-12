@@ -1,14 +1,14 @@
 /* Header - Registro */
 .custom-toolbar-register {
-  --background: #28a745; /* Verde moderno */
-  --color: white;
+  --background: var(--ion-color-success); /* Verde predefinido adaptable */
+  --color: var(--ion-color-light); /* Texto claro adaptable */
   text-align: center;
 }
 
 .app-title-register {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: var(--ion-color-light); /* Adaptable al tema */
 }
 
 /* Página de Registro */
@@ -20,40 +20,30 @@
   height: 100vh;
   text-align: center;
   padding: 20px;
+  background-color: var(--ion-background-color); /* Fondo adaptable */
 }
 
-.center-content {
-  text-align: center;
-}
-
-/* Título del Formulario */
-.app-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--ion-color-dark);
-  margin-bottom: 20px;
-}
-
-/* Formulario de Registro */
+/* Tarjeta de Registro */
 .register-card {
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  width: 100%;
-  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra adaptable */
+  background-color: var(--ion-card-background); /* Fondo adaptable al tema */
+  margin: 20px;
 }
 
+/* Campos de Entrada */
 .input-item {
-  --background: var(--ion-color-light);
+  --background: var(--ion-item-background); /* Fondo adaptable */
+  --background-dark: var(--ion-color-dark); /* Oscuro si aplica */
   --border-radius: 5px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra adaptable */
 }
 
 .input-item ion-label {
   font-size: 0.9rem;
-  color: var(--ion-color-dark);
+  color: var(--ion-text-color); /* Texto adaptable */
 }
 
 .input-item ion-input {
@@ -63,8 +53,8 @@
 
 /* Botón Registrar */
 .register-button {
-  --background: #28a745; /* Verde para registro */
-  --background-hover: #218838;
+  --background: var(--ion-color-success); /* Verde adaptable */
+  --background-hover: var(--ion-color-success-shade);
   --border-radius: 5px;
   font-size: 1rem;
   font-weight: bold;
@@ -72,7 +62,7 @@
 }
 
 .register-button:disabled {
-  opacity: 0.7;
+  opacity: 0.7; /* Adaptable al tema */
 }
 
 /* Spinner de Carga */
@@ -84,5 +74,13 @@
 }
 
 .spinner-container ion-spinner {
-  --color: var(--ion-color-primary);
+  --color: var(--ion-color-primary); /* Color principal adaptable */
+}
+
+/* Footer */
+app-footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--ion-color-secondary); /* Adaptable al tema */
+  text-align: center;
 }

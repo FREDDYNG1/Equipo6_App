@@ -14,7 +14,65 @@ export class SupabaseService {
     this.supabase = createClient(this.supabaseUrl, this.supabaseKey);
   }
 
-  /** Método para registrar una nueva clase */
+  // Auth methods
+  async signUp(email: string, password: string) {
+    return await this.supabase.auth.signUp({ email, password });
+  }
+
+  async signIn(email: string, password: string) {
+    return await this.supabase.auth.signInWithPassword({ email, password });
+  }
+
+  async signOut() {
+    await this.supabase.auth.signOut();
+  }
+
+  async getUser() {
+    return this.supabase.auth.getUser();
+  }
+
+  async getSession() {
+    return this.supabase.auth.getSession();
+  }
+
+  // User data methods
+  async addUser(user: { name: string; last_name: string; email: string }) {
+    return this.supabase.from('users').insert([user]);
+  }
+
+  async getUserNameAndLastName() {
+    const { data: { user }, error } = await this.supabase.auth.getUser();
+    if (error || !user) {
+      throw new Error('Error al obtener el usuario actual.');
+    }
+
+    const { data, error: userError } = await this.supabase
+      .from('users')
+      .select('name, last_name')
+      .eq('email', user.email)
+      .single();
+
+    if (userError) {
+      throw new Error('Error al obtener el nombre y apellido del usuario.');
+    }
+
+    return data;
+  }
+
+  async getUserData(): Promise<any> {
+    const { data: { user }, error } = await this.supabase.auth.getUser();
+    if (error) {
+      console.error('Error al obtener el usuario:', error.message);
+      return null;
+    }
+    return user;
+  }
+
+  getByUserEmail(email: string) {
+    return this.supabase.from('users').select('*').eq('email', email);
+  }
+
+  // Class methods
   async registrarClase(clase: any) {
     const { data, error } = await this.supabase.from('clases').insert([clase]);
     if (error) {
@@ -24,7 +82,6 @@ export class SupabaseService {
     return data;
   }
 
-  /** Método para obtener todas las clases */
   async obtenerClases() {
     const { data, error } = await this.supabase
       .from('clases')
@@ -37,7 +94,7 @@ export class SupabaseService {
     return data;
   }
 
-  /** Método para registrar asistencia */
+  // Attendance methods
   async registrarAsistencia(asistencia: any) {
     const { data, error } = await this.supabase
       .from('registros_asistencia')
@@ -49,34 +106,27 @@ export class SupabaseService {
     return data;
   }
 
-  /** Método para obtener registros de asistencia de una clase */
-  async addAttendance(claseId: string, nombreAlumno: string, fechaAsistencia: string) {
-    const { data, error } = await this.supabase
-      .from('registro_asistencia') // Cambiado para usar la tabla correcta
-      .insert([
-        {
-          clase_id: claseId,
-          nombre_alumno: nombreAlumno,
-          fecha_asistencia: fechaAsistencia,
-        },
-      ]);
+  async obtenerClasesAsistidas(): Promise<number> {
+    const { data: { user }, error: userError } = await this.supabase.auth.getUser();
+    if (userError || !user) {
+      console.error('Error al obtener el usuario actual:', userError?.message);
+      throw new Error('No se pudo obtener el usuario actual.');
+    }
+
+    const { count, error } = await this.supabase
+      .from('clases')
+      .select('id', { count: 'exact', head: true })
+      // Filtrar por el user_id en lugar de email
+      .eq('user_id', user.id);
 
     if (error) {
-      console.error('Error al agregar asistencia:', error);
+      console.error('Error al obtener el conteo de clases asistidas:', error.message);
       throw error;
     }
 
-    return data;
+    // Retorna el conteo exacto de registros
+    return count || 0;
   }
 
 
-   // Obtener datos del usuario actual
-   async getUserData(): Promise<any> {
-    const { data: { user }, error } = await this.supabase.auth.getUser();
-    if (error) {
-      console.error('Error al obtener el usuario:', error.message);
-      return null;
-    }
-    return user;
-  }
 }

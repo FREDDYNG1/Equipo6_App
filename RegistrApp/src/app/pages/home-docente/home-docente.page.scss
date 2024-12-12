@@ -93,3 +93,68 @@ div.ion-page {
   flex-direction: column;
   height: 100%;
 }
+
+/* --- MODO OSCURO --- */
+@media (prefers-color-scheme: dark) {
+  /* Menú lateral */
+  ion-menu {
+    background: #1e1e1e; /* Fondo oscuro */
+  }
+
+  ion-toolbar {
+    --background: #2e7d32; /* Verde oscuro */
+    --color: #ffffff; /* Texto blanco */
+  }
+
+  ion-item {
+    --background: #2a2a2a; /* Fondo oscuro para los ítems */
+    color: #e0e0e0; /* Texto claro */
+  }
+
+  ion-item:hover {
+    --background: #3c3c3c; /* Fondo al pasar el cursor */
+  }
+
+  .menu-icon {
+    color: #81c784; /* Verde claro */
+  }
+
+  ion-label {
+    color: #e0e0e0; /* Texto claro */
+  }
+
+  /* Encabezado principal */
+  .header-container {
+    background: linear-gradient(135deg, #2e7d32, #388e3c); /* Degradado oscuro */
+    color: #ffffff; /* Texto blanco */
+  }
+
+  .welcome-title {
+    color: #b9f6ca; /* Verde claro */
+  }
+
+  .welcome-subtitle {
+    color: #a5d6a7; /* Verde tenue */
+  }
+
+  /* Contenedor principal */
+  .content-container {
+    background: #1e1e1e; /* Fondo oscuro */
+  }
+
+  .action-button {
+    --background: #388e3c; /* Verde más oscuro */
+    --background-activated: #2e7d32; /* Verde activado */
+    --color: #ffffff; /* Texto blanco */
+  }
+
+  ion-content {
+    --background: #121212; /* Fondo general oscuro */
+  }
+
+  .date-card {
+    --background: #2c2c2c; /* Fondo oscuro para la tarjeta */
+    --color: #ffffff; /* Texto claro */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+  }
+}

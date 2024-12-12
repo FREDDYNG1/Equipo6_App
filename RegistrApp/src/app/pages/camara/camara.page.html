@@ -1,34 +1,54 @@
-<ion-content>
-  <!-- Formulario para registrar asistencia -->
-  <ion-list>
-    <!-- Nombre del Alumno -->
-    <ion-item>
-      <ion-label position="stacked">Nombre del Alumno</ion-label>
-      <ion-input [(ngModel)]="nombreAlumno" name="nombreAlumno" readonly></ion-input>
-    </ion-item>
+<ion-header>
+  <ion-toolbar color="primary" class="custom-header">
+    <ion-title class="header-title">Registro de Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <!-- Asignatura Escaneada -->
-    <ion-item>
-      <ion-label position="stacked">Asignatura (Escaneada)</ion-label>
-      <ion-input [(ngModel)]="scanResult" name="scanResult" readonly></ion-input>
-    </ion-item>
+<ion-content class="content-background">
+  <!-- Cabecera destacada -->
+  <ion-card class="info-card">
+    <ion-card-header class="info-header">
+      <ion-card-title class="info-title">Detalles del Alumno</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="info-container">
+        <h1 class="student-name">{{ nombreAlumno || 'Nombre del Alumno' }}</h1>
+        <p class="subject-info">
+          <ion-icon name="book-outline" class="subject-icon"></ion-icon>
+          <span>{{ scanResult || 'Escanea para obtener la asignatura' }}</span>
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
-    <!-- Botones -->
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-button expand="block" (click)="startScan()" color="primary">
-            Escanear QR
-          </ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button expand="block" (click)="registrarClase()" color="secondary">
-            Registrar Asistencia
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-list>
+  <!-- Botones -->
+  <ion-grid>
+    <ion-row class="button-row">
+      <ion-col size="12" size-sm="6">
+        <ion-button
+          expand="block"
+          (click)="startScan()"
+          color="primary"
+          class="action-button"
+        >
+          <ion-icon slot="start" name="scan-outline"></ion-icon>
+          Escanear QR
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6">
+        <ion-button
+          expand="block"
+          [disabled]="!nombreAlumno || !scanResult || scanResult.trim() === ''"
+          (click)="registrarClase()"
+          color="success"
+          class="action-button"
+        >
+          <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+          Registrar Asistencia
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <!-- Toast para mostrar mensajes -->
   <ion-toast

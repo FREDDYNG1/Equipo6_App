@@ -3,7 +3,6 @@ import { SupabaseService } from 'src/app/services/supabase.service';
 import { ModalController, Platform } from '@ionic/angular';
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
-import { AuthService } from 'src/app/services/auth.service'; // Importar AuthService
 
 @Component({
   selector: 'app-camara',
@@ -23,8 +22,7 @@ export class CamaraPage {
   constructor(
     private supabaseService: SupabaseService,
     private modalController: ModalController,
-    private platform: Platform,
-    private authService: AuthService // Inyectar AuthService
+    private platform: Platform
   ) {}
 
   async ngOnInit() {
@@ -41,14 +39,20 @@ export class CamaraPage {
       }
     }
 
-    // Obtener datos del usuario autenticado y autocompletar el nombre del alumno
-    this.authService.getCurrentUser().subscribe(user => {
-      if (user) {
-        this.nombreAlumno = user.name , user.userName; // Autocompletar el nombre
+    // Obtener datos del usuario autenticado usando SupabaseService
+    try {
+      const userData = await this.supabaseService.getUserNameAndLastName();
+      if (userData && userData.name && userData.last_name) {
+        // Combinar nombre y apellido
+        this.nombreAlumno = `${userData.name} ${userData.last_name}`;
       } else {
-        console.error('No se encontró información del usuario.');
+        console.error('No se encontró información del usuario o faltan campos');
+        this.showToastMessage('No se encontró información del usuario.', 'danger');
       }
-    });
+    } catch (error) {
+      console.error('Error al obtener información del usuario:', error);
+      this.showToastMessage('Error al cargar datos del usuario.', 'danger');
+    }
   }
 
   // Método para mostrar mensajes en el Toast
@@ -78,9 +82,15 @@ export class CamaraPage {
     await modal.present();
 
     const { data } = await modal.onWillDismiss();
+    console.log('Datos recibidos del modal:', data);
     if (data) {
       const scannedData = data?.text || data?.barcode?.displayValue || 'No se obtuvo información';
       this.scanResult = scannedData; // Asignar el valor escaneado
+      if (scannedData === 'No se obtuvo información') {
+        this.showToastMessage('No se recibió información del escaneo.', 'danger');
+      } else {
+        this.showToastMessage('Código escaneado correctamente.', 'success');
+      }
     } else {
       this.showToastMessage('No se recibió información del escaneo.', 'danger');
     }
@@ -90,7 +100,7 @@ export class CamaraPage {
   async registrarClase() {
     try {
       // Validar campos requeridos
-      if (!this.nombreAlumno || !this.scanResult) {
+      if (!this.nombreAlumno || this.nombreAlumno.trim() === '' || !this.scanResult || this.scanResult.trim() === '') {
         this.showToastMessage('Por favor, completa todos los campos.', 'danger');
         return;
       }

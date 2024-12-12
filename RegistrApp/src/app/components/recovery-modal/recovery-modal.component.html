@@ -7,7 +7,7 @@
     <ion-input
       type="email"
       [(ngModel)]="email"
-      (ionBlur)="validateEmail()"
+      (ionBlur)="isValidDomain(email)"
       required
     ></ion-input>
   </ion-item>

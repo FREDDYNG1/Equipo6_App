@@ -8,22 +8,28 @@
   <div class="profile-container">
     <!-- Foto de perfil -->
     <ion-avatar class="profile-picture">
-      <img src="assets/images/profile-placeholder.webp" alt="Foto de perfil" />
+      <img [src]="user.profilePicture" alt="Foto de perfil" />
     </ion-avatar>
 
     <!-- Nombre del usuario -->
-    <h2 class="user-name">Juan Pérez</h2>
+    <h2 class="user-name">{{ user.name }}</h2>
 
     <!-- Institución -->
     <ion-item lines="none" class="institution">
       <ion-icon slot="start" name="school-outline"></ion-icon>
-      <ion-label>Institución: Universidad de Chile</ion-label>
+      <ion-label>Institución: {{ user.institution }}</ion-label>
     </ion-item>
 
     <!-- Carrera -->
     <ion-item lines="none" class="career">
       <ion-icon slot="start" name="book-outline"></ion-icon>
-      <ion-label>Carrera: Ingeniería en Informática</ion-label>
+      <ion-label>Carrera: {{ user.career }}</ion-label>
+    </ion-item>
+
+    <!-- Mostrar la cantidad de clases asistidas -->
+    <ion-item lines="none" class="asistencia">
+      <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+      <ion-label>Clases asistidas: {{ attendedClassesCount }}</ion-label>
     </ion-item>
 
     <!-- Opciones de perfil -->

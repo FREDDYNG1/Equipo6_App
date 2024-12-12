@@ -103,3 +103,61 @@ ion-header {
     height: auto;
   }
 }
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  ion-header {
+    ion-toolbar.custom-header {
+      --background: #2e7d32; /* Verde más oscuro */
+      --color: white; /* Texto blanco */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    }
+  }
+
+  .qr-content {
+    --background: #121212; /* Fondo oscuro */
+  }
+
+  .qr-container {
+    background: #1e1e1e; /* Fondo oscuro para el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más tenue */
+    color: #ffffff; /* Texto blanco */
+  }
+
+  .title {
+    color: #b9f6ca; /* Verde claro */
+  }
+
+  .styled-select {
+    --background: #2c2c2c; /* Fondo oscuro para el selector */
+    color: #ffffff; /* Texto blanco */
+  }
+
+  .button-base {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+  }
+
+  .generate-btn {
+    --background: #43a047; /* Verde más oscuro */
+    --background-activated: #388e3c; /* Verde activado */
+  }
+
+  .share-btn {
+    --background: #1976d2; /* Azul más oscuro */
+    --background-activated: #1565c0; /* Azul activado */
+  }
+
+  .qr-output {
+    .qr-title {
+      color: #b9f6ca; /* Verde claro */
+    }
+
+    .qr-wrapper {
+      border: 2px solid #424242; /* Borde gris oscuro */
+      background: #2c2c2c; /* Fondo oscuro */
+    }
+
+    img {
+      filter: brightness(0.9); /* Ajusta el brillo para mayor contraste */
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 @Component({
   selector: 'app-home-alumno',
@@ -28,8 +28,9 @@ export class HomeAlumnoPage implements OnInit {
 
   saludo: string = '¡Bienvenido!';
   currentDate: string = ''; // Variable para la fecha actual
+  attendedClassesCount: number = 0; // Nueva propiedad para las clases asistidas
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {}
 
   ngOnInit() {
     this.setCurrentDate(); // Establecer la fecha actual
@@ -49,21 +50,32 @@ export class HomeAlumnoPage implements OnInit {
   }
 
   // Función para cargar datos del usuario actual
-  loadUser() {
-    this.authService.getCurrentUser().subscribe(
-      (user) => {
-        if (user && user.name) {
-          this.saludo = `¡Bienvenido, ${user.name}!`;
-        } else {
-          this.saludo = '¡Bienvenido!';
-          // Redirigir al login si no hay usuario autenticado
-          this.router.navigate(['/login']);
-        }
-      },
-      (error) => {
-        console.error('Error al obtener el usuario:', error);
-        this.router.navigate(['/login']); // Redirigir al login en caso de error
+  async loadUser() {
+    try {
+      const user = await this.supabaseService.getUserNameAndLastName();
+      if (!user) {
+        throw new Error('Usuario no autenticado o error al obtener los datos del usuario.');
       }
-    );
+
+      if (user.name) {
+        this.saludo = `¡Bienvenido, ${user.name}!`;
+
+        // Una vez que tenemos el nombre del usuario, intentamos obtener la cantidad de clases asistidas
+        try {
+          this.attendedClassesCount = await this.supabaseService.obtenerClasesAsistidas();
+        } catch (e) {
+          console.error('Error al obtener clases asistidas:', e);
+          // Aquí puedes decidir si mostrar un mensaje, ignorar el error o manejarlo de otra forma
+          // Por ejemplo, simplemente no mostrar el conteo o mostrar 0
+          this.attendedClassesCount = 0;
+        }
+      } else {
+        this.saludo = '¡Bienvenido!';
+        this.router.navigate(['/login']);
+      }
+    } catch (error) {
+      console.error('Error al cargar el usuario:', error);
+      this.router.navigate(['/login']); // Redirigir al login en caso de error
+    }
   }
 }

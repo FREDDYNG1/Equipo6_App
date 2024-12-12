@@ -37,8 +37,14 @@
     "@ionic/angular": "^8.0.0",
     "@ionic/storage": "^4.0.0",
     "@ionic/storage-angular": "^4.0.0",
-    "@supabase/supabase-js": "^2.47.2",
+    "@supabase/supabase-js": "^2.47.3",
+    "@wdio/appium-service": "^9.4.1",
+    "@wdio/local-runner": "^9.4.1",
+    "@wdio/mocha-framework": "^9.2.8",
+    "@wdio/spec-reporter": "^9.2.14",
+    "@wdio/visual-service": "^6.2.4",
     "angularx-qrcode": "^18.0.2",
+    "appium-uiautomator2-driver": "^3.9.3",
     "cordova-sqlite-storage": "^6.1.0",
     "html2canvas": "^1.4.1",
     "ionicons": "^7.0.0",
@@ -48,6 +54,7 @@
     "qrcode": "^1.5.4",
     "rxjs": "^7.5.0",
     "tslib": "^2.3.0",
+    "wdio-html-nice-reporter": "^8.1.7",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
@@ -66,6 +73,7 @@
     "@types/qrcode": "^1.5.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@wdio/cli": "^9.4.1",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
@@ -77,7 +85,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.0"
+    "typescript": "~5.4.0",
+    "webdriverio": "^9.4.1"
   },
   "description": "An Ionic project"
 }

@@ -93,7 +93,6 @@ div.ion-page {
   height: 100%;
 }
 
-
 .date-card {
   margin: 1rem;
   text-align: center;
@@ -112,4 +111,83 @@ div.ion-page {
   font-size: 1rem;
   color: #333333;
   margin-top: 0.5rem;
+}
+
+/* --- MODO OSCURO --- */
+@media (prefers-color-scheme: dark) {
+  /* Menú lateral */
+  ion-menu {
+    background: #1e1e1e; /* Fondo oscuro */
+  }
+
+  ion-toolbar {
+    --background: #2e7d32; /* Verde oscuro */
+    --color: #ffffff; /* Texto blanco */
+  }
+
+  ion-title {
+    color: #ffffff; /* Texto blanco */
+  }
+
+  ion-item {
+    --background: #2a2a2a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+  }
+
+  ion-item:hover {
+    --background: #3c3c3c; /* Fondo al pasar el cursor */
+  }
+
+  ion-icon {
+    color: #81c784; /* Verde claro */
+  }
+
+  ion-label {
+    color: #e0e0e0; /* Texto claro */
+  }
+
+  /* Página principal */
+  .welcome-container {
+    background: linear-gradient(135deg, #2e7d32, #388e3c); /* Fondo degradado oscuro */
+    color: #ffffff; /* Texto blanco */
+  }
+
+  .welcome-title {
+    color: #b9f6ca; /* Verde claro */
+  }
+
+  .welcome-subtitle {
+    color: #a5d6a7; /* Verde tenue */
+  }
+
+  /* Botón principal */
+  .action-button {
+    --background: #2e7d32; /* Fondo verde oscuro */
+    --color: #ffffff; /* Texto blanco */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .action-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
+  }
+
+  /* General */
+  ion-content {
+    --background: #121212; /* Fondo general oscuro */
+  }
+
+  .date-card {
+    --background: #2c2c2c; /* Fondo oscuro */
+    color: #ffffff; /* Texto claro */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .date-card ion-card-title {
+    color: #81c784; /* Verde claro */
+  }
+
+  .date-card p {
+    color: #e0e0e0; /* Texto claro */
+  }
 }

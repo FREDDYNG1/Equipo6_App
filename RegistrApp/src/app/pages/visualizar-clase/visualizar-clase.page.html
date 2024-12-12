@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Clases Registradas</ion-title>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title class="header-title">Clases Registradas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,8 +15,14 @@
     <div *ngFor="let clase of clases" class="clase-card">
       <h2 class="clase-asignatura">{{ clase.asignatura }}</h2>
       <p class="clase-detalles">
-        <span><strong>Alumno:</strong> {{ clase.nombre_alumno }}</span>
-        <span><strong>Fecha:</strong> {{ clase.fecha | date: 'longDate' }}</span>
+        <span class="clase-alumno">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <strong>{{ clase.nombre_alumno }}</strong>
+        </span>
+        <span class="clase-fecha">
+          <ion-icon name="calendar-outline"></ion-icon>
+          {{ clase.fecha | date: 'longDate' }}
+        </span>
       </p>
       <p class="clase-descripcion">{{ clase.descripcion }}</p>
     </div>

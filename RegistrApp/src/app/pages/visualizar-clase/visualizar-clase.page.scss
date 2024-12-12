@@ -1,37 +1,44 @@
-/* Header */
-ion-header {
-  --background: #343a40; /* Fondo oscuro */
-  --color: white; /* Texto blanco */
+/* --- VARIABLES GENERALES --- */
+:root {
+  --ion-color-primary: #004b9b;
+  --ion-color-secondary: #6c757d;
+  --ion-color-light: #f8f9fa;
+  --ion-color-dark: #343a40;
+  --ion-color-accent: #17a2b8;
 }
 
-ion-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* --- HEADER --- */
+.custom-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
   text-align: center;
 }
 
-/* Contenido general */
-.minimal-list-content {
-  padding: 16px;
-  background-color: #f8f9fa; /* Fondo claro */
+.header-title {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
-/* Spinner de carga */
+/* --- SPINNER --- */
 .spinner-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 50vh; /* Centrado vertical */
+  justify-content: center;
+  height: 100%;
 }
 
-/* Lista de clases */
+/* --- LISTA DE CLASES --- */
+.minimal-list-content {
+  padding: 16px;
+}
+
 .clase-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--ion-color-light);
+  border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .clase-card:hover {
@@ -40,30 +47,101 @@ ion-title {
 }
 
 .clase-asignatura {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #007bff; /* Azul moderno */
+  color: var(--ion-color-primary);
   margin-bottom: 8px;
 }
 
 .clase-detalles {
-  font-size: 0.9rem;
-  color: #6c757d; /* Gris moderno */
-  margin-bottom: 12px;
-  line-height: 1.5;
+  font-size: 1rem;
+  color: var(--ion-color-dark);
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.clase-alumno {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--ion-color-secondary);
+}
+
+.clase-alumno ion-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: var(--ion-color-primary);
+}
+
+.clase-fecha {
+  display: flex;
+  align-items: center;
+}
+
+.clase-fecha ion-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: var(--ion-color-secondary);
 }
 
 .clase-descripcion {
-  font-size: 1rem;
-  color: #343a40; /* Gris oscuro */
+  font-size: 0.9rem;
+  color: var(--ion-color-secondary);
+  margin-top: 8px;
 }
 
-/* Mensaje de "No hay clases" */
+/* --- MENSAJE SIN CLASES --- */
 .no-clases-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh; /* Centrado vertical */
+  text-align: center;
   font-size: 1rem;
-  color: #6c757d; /* Texto gris moderno */
+  margin-top: 20px;
+  color: var(--ion-color-secondary);
+}
+
+/* --- MODO OSCURO --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary: #375a7f;
+    --ion-color-secondary: #adb5bd;
+    --ion-color-light: #212529;
+    --ion-color-dark: #f8f9fa;
+    --ion-color-accent: #63c2de;
+  }
+
+  /* --- LISTA DE CLASES --- */
+  .clase-card {
+    background-color: var(--ion-color-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .clase-asignatura {
+    color: var(--ion-color-accent);
+  }
+
+  .clase-detalles {
+    color: var(--ion-color-dark);
+  }
+
+  .clase-alumno {
+    color: var(--ion-color-dark);
+  }
+
+  .clase-alumno ion-icon {
+    color: var(--ion-color-accent);
+  }
+
+  .clase-fecha ion-icon {
+    color: var(--ion-color-secondary);
+  }
+
+  .clase-descripcion {
+    color: var(--ion-color-dark);
+  }
+
+  /* --- MENSAJE SIN CLASES --- */
+  .no-clases-container {
+    color: var(--ion-color-secondary);
+  }
 }

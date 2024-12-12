@@ -1,45 +1,35 @@
-/* --- Fondo General --- */
-ion-content {
-  --background: #f9f9f9; /* Fondo claro */
-}
-
-/* Contenedor Principal */
 .profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  max-width: 400px;
+  margin: auto;
+  background: var(--ion-background-color, #ffffff);
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   text-align: center;
-  padding: 1.5rem 1rem;
-  gap: 1rem;
 }
 
-/* Foto de Perfil */
 .profile-picture {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 1rem;
-  border: 4px solid #4caf50; /* Borde verde */
+  margin: 20px auto;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #4caf50;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Nombre del Usuario */
 .user-name {
+  margin: 15px 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333333;
-  margin-bottom: 0.5rem;
+  color: var(--ion-text-color, #333333);
 }
 
-/* Información de Institución y Carrera */
-ion-item {
-  --border-radius: 8px;
-  --background: #ffffff;
-  --padding-start: 1rem;
-  --padding-end: 1rem;
-  margin-bottom: 1rem;
+.institution, .career, .classes-attended {
+  margin: 10px 0;
+  background: var(--ion-item-background, #f4f4f4);
+  border-radius: 10px;
+  padding: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -47,36 +37,31 @@ ion-icon {
   color: #4caf50;
 }
 
-ion-label {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #555555;
+ion-list ion-item {
+  margin: 10px 0;
+  border-radius: 10px;
+  background: var(--ion-item-background, #f4f4f4);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --ripple-color: #4caf50;
 }
 
-/* Opciones de Perfil */
-ion-list {
-  width: 100%;
+ion-list ion-item:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
 }
 
-ion-item[button] {
-  --background: #ffffff;
-  --border-radius: 8px;
-  margin: 0.5rem 0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-ion-item[button]:hover {
-  transform: scale(1.03);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-ion-item[button] ion-icon {
-  color: #4caf50; /* Íconos verdes */
-}
-
-ion-item[button] ion-label {
-  font-size: 1rem;
-  color: #333333;
-  font-weight: bold;
+@media (prefers-color-scheme: dark) {
+  .profile-container {
+    background: #1e1e1e;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  }
+  .user-name {
+    color: #ffffff;
+  }
+  .institution, .career, .classes-attended {
+    background: #2e2e2e;
+  }
+  ion-list ion-item {
+    background: #2e2e2e;
+  }
 }

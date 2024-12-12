@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importar el servicio Router
-import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 @Component({
   selector: 'app-home-docente',
@@ -10,14 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeDocentePage implements OnInit {
   menuOptions = [
     { titulo: 'Inicio', url: '/inicio', icon: 'home' },
-    { titulo: 'Perfil', url: '/perfil', icon: 'person-outline' },
+    { titulo: 'Perfil', url: '/perfil-docente', icon: 'person-outline' },
     { titulo: 'Cerrar Sesión', url: '/logout', icon: 'log-out-outline' },
   ];
 
   saludo: string = '¡Bienvenido!';
   currentDate: string = ''; // Variable para la fecha actual
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {}
 
   ngOnInit() {
     this.setCurrentDate(); // Establecer la fecha actual
@@ -37,21 +37,22 @@ export class HomeDocentePage implements OnInit {
   }
 
   // Función para cargar datos del usuario actual
-  loadUser() {
-    this.authService.getCurrentUser().subscribe(
-      (user) => {
-        if (user && user.name) {
-          this.saludo = `¡Bienvenido, ${user.name}!`;
-        } else {
-          this.saludo = '¡Bienvenido!';
-          // Redirigir al login si no hay usuario autenticado
-          this.router.navigate(['/login']);
-        }
-      },
-      (error) => {
-        console.error('Error al obtener el usuario:', error);
-        this.router.navigate(['/login']); // Redirigir al login en caso de error
+  async loadUser() {
+    try {
+      const user = await this.supabaseService.getUserNameAndLastName();
+      if (!user) {
+        throw new Error('Usuario no autenticado o error al obtener los datos del usuario.');
       }
-    );
+
+      if (user.name) {
+        this.saludo = `¡Bienvenido, ${user.name}!`;
+      } else {
+        this.saludo = '¡Bienvenido!';
+        this.router.navigate(['/login']); // Redirigir al login si no hay nombre disponible
+      }
+    } catch (error) {
+      console.error('Error al cargar el usuario:', error);
+      this.router.navigate(['/login']); // Redirigir al login en caso de error
+    }
   }
 }
